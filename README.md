@@ -22,7 +22,7 @@ See `overview.md`, `architecture.md`, `schema.md`, and `why-it-wins.md` for the 
 - Sanity (schema + Studio, embedded at `/studio`) — content lives in a `sourceDocument` / `claim` / `quoteEvidence` / `redTeamCase` / `redTeamRun` / `trustMetricSnapshot` schema (`schema.md`)
 - [Sanity Context MCP](https://www.sanity.io/docs/ai/sanity-context-mcp) in **dataset (GROQ) mode**, so the agent gets documents back verbatim rather than AI-summarized — required for exact-substring verification to mean anything. A Knowledge Base is also attached to the same endpoint to satisfy the challenge's "backed by a Knowledge Base" requirement; GROQ mode wins when both sources are present.
 - Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/google`) for the tool-calling loop
-- Google Gemini (`gemini-3.5-flash-lite`) as the model provider
+- Google Gemini (`gemini-3.6-flash`) as the model provider
 
 ## Setup
 
