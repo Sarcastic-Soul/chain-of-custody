@@ -1,0 +1,236 @@
+diff --git a/dist/arrow-CZ-Lw1QO.js b/dist/arrow-CZ-Lw1QO.js
+index 66e5260ee32bd4470ed8235c2c1590c4e35a1280..e768b0958422b4f22b20461fc526bf1e4de4170a 100644
+--- a/dist/arrow-CZ-Lw1QO.js
++++ b/dist/arrow-CZ-Lw1QO.js
+@@ -1,7 +1,8 @@
+ import { _ as useTheme_v2, d as createGlobalScopedContext, f as globalScope, r as isRecord } from "./useLayer-CUKYjJYq.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { useContext, useId } from "react";
++import ReactDefault from "react";
++const { useContext, useId } = ReactDefault;
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { createPortal } from "react-dom";
+ import { assignInlineVars } from "@vanilla-extract/dynamic";
+diff --git a/dist/autocomplete.js b/dist/autocomplete.js
+index 578dd4b5282b2d6c89ae08c00d7c8bbf0009b48f..c0691affdb7425c61279e3cb58ba3fe649ce1e9d 100644
+--- a/dist/autocomplete.js
++++ b/dist/autocomplete.js
+@@ -10,7 +10,8 @@ import { c } from "react/compiler-runtime";
+ import { ChevronDownIcon } from "@sanity/icons/ChevronDown";
+ import { SpinnerIcon } from "@sanity/icons/Spinner";
+ import { clsx } from "clsx/lite";
+-import { cloneElement, useEffect, useImperativeHandle, useReducer, useRef, useState } from "react";
++import ReactDefault from "react";
++const { cloneElement, useEffect, useImperativeHandle, useReducer, useRef, useState } = ReactDefault;
+ import { jsx, jsxs } from "react/jsx-runtime";
+ function AutocompleteOption(props) {
+ 	let $ = c(11), { children, id, onSelect, selected, value } = props, t0;
+diff --git a/dist/breadcrumbs.js b/dist/breadcrumbs.js
+index 1e9eb8bdb0288fa6177ae977e8772d39f52545fc..5ccc8f6ef30accc637f3abb331faa1154d9635eb 100644
+--- a/dist/breadcrumbs.js
++++ b/dist/breadcrumbs.js
+@@ -7,7 +7,8 @@ import { t as Popover } from "./popover-DR6UQQvq.js";
+ import { t as useClickOutsideEvent } from "./useClickOutsideEvent-wGLGWBZN.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { Children, Fragment, isValidElement, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Children, Fragment, isValidElement, useRef, useState } = ReactDefault;
+ import { styled } from "styled-components";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ const ExpandButton = styled(Button).withConfig({
+diff --git a/dist/button-Wii-24Xu.js b/dist/button-Wii-24Xu.js
+index a693a2227fe34d2e6bad2c53eeb4b865fb1b546b..ed8f452c57ba937b554611788b992bebbcfd5178 100644
+--- a/dist/button-Wii-24Xu.js
++++ b/dist/button-Wii-24Xu.js
+@@ -5,7 +5,8 @@ import { t as Flex } from "./flex-CpiAc-4D.js";
+ import { n as Text } from "./stack-SbGBZ0x3.js";
+ import { c } from "react/compiler-runtime";
+ import { SpinnerIcon } from "@sanity/icons/Spinner";
+-import { isValidElement } from "react";
++import ReactDefault from "react";
++const { isValidElement } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { isValidElementType } from "react-is";
+diff --git a/dist/code.js b/dist/code.js
+index 03fd84d288d7fd48bdc760613058de609815324e..28b3dce5cc94a00000062964276e8665a96ce8cc 100644
+--- a/dist/code.js
++++ b/dist/code.js
+@@ -3,7 +3,8 @@ import { n as _getArrayProp } from "./helpers-C8xxXAQC.js";
+ import { t as getTheme_v2 } from "./getTheme_v2-y09KqtEb.js";
+ import { t as responsiveCodeFontStyle } from "./codeFontStyle-84SMhFtI.js";
+ import { c } from "react/compiler-runtime";
+-import { Suspense, lazy } from "react";
++import ReactDefault from "react";
++const { Suspense, lazy } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { jsx } from "react/jsx-runtime";
+ function codeSyntaxHighlightingStyle({ theme }) {
+diff --git a/dist/getElementRef-Jw7gY0eV.js b/dist/getElementRef-Jw7gY0eV.js
+index 199655110d04c17917e42e8e64a50e5e6a75a4e3..3ab5a39c9cb823e55e170ab353f3a76c4adef537 100644
+--- a/dist/getElementRef-Jw7gY0eV.js
++++ b/dist/getElementRef-Jw7gY0eV.js
+@@ -1,5 +1,7 @@
+ import { c } from "react/compiler-runtime";
+-import { Activity, useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
++const Activity = ReactDefault.Activity;
+ import { jsx } from "react/jsx-runtime";
+ import { PresenceChild, invariant } from "motion/react";
+ /**
+diff --git a/dist/hotkeys-DEMStMQ5.js b/dist/hotkeys-DEMStMQ5.js
+index 0b0cb297ad8b4811d9a901a844219b867fe985ac..446c305bdde95e213c1ddd9747e33aeb225096a7 100644
+--- a/dist/hotkeys-DEMStMQ5.js
++++ b/dist/hotkeys-DEMStMQ5.js
+@@ -4,7 +4,8 @@ import { v as responsiveRadiusStyle, y as Box } from "./useLayer-CUKYjJYq.js";
+ import { n as Text } from "./stack-SbGBZ0x3.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { Children, useEffect } from "react";
++import ReactDefault from "react";
++const { Children, useEffect } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { Fragment as Fragment$1, jsx } from "react/jsx-runtime";
+ import { useEffectEvent } from "use-effect-event";
+diff --git a/dist/index.js b/dist/index.js
+index dbc8564521a1c90c3f3ddcf9c899915c8d741823..93bfa09ed20b48f15e9a43cde6f28f8bc034b8f2 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -19,7 +19,8 @@ import { t as Grid } from "./grid-BVZEj_Xe.js";
+ import { c } from "react/compiler-runtime";
+ import { ChevronDownIcon } from "@sanity/icons/ChevronDown";
+ import { clsx } from "clsx/lite";
+-import { Children, Component, cloneElement, isValidElement, useContext, useEffect, useId, useImperativeHandle, useRef, useState, useSyncExternalStore } from "react";
++import ReactDefault from "react";
++const { Children, Component, cloneElement, isValidElement, useContext, useEffect, useId, useImperativeHandle, useRef, useState, useSyncExternalStore } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import ReactIs from "react-is";
+diff --git a/dist/layer-B0tlPeLT.js b/dist/layer-B0tlPeLT.js
+index 578ea869370358e3f593075f4cf7c2ed2de64c62..e0c6f8a6f138f6d4fe0e4f00fe402ebe629031d2 100644
+--- a/dist/layer-B0tlPeLT.js
++++ b/dist/layer-B0tlPeLT.js
+@@ -3,7 +3,8 @@ import { a as isHTMLElement, n as containsOrEqualsElement } from "./element-BYgC
+ import { n as LayerProvider, t as useLayer } from "./useLayer-CUKYjJYq.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { useEffect, useImperativeHandle, useRef } from "react";
++import ReactDefault from "react";
++const { useEffect, useImperativeHandle, useRef } = ReactDefault;
+ import { jsx } from "react/jsx-runtime";
+ var layer = "_1xz6t3i0";
+ function LayerChildren(props) {
+diff --git a/dist/menu.js b/dist/menu.js
+index fadbf9e682d29631baf9ea9d25ab9b20ae2a1e9b..ac3af349eb79b08a03a78681926ee51a4363b158 100644
+--- a/dist/menu.js
++++ b/dist/menu.js
+@@ -10,7 +10,8 @@ import { t as useClickOutsideEvent } from "./useClickOutsideEvent-wGLGWBZN.js";
+ import { i as useGlobalKeyDown, t as Hotkeys } from "./hotkeys-DEMStMQ5.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { cloneElement, isValidElement, useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { cloneElement, isValidElement, useContext, useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { isValidElementType } from "react-is";
+diff --git a/dist/popover-DR6UQQvq.js b/dist/popover-DR6UQQvq.js
+index 5cb719c0ae9b5434abe82ba0c097c420c0b2f172..b0fad1784b9bde93691c16269c91fd00a5e324bd 100644
+--- a/dist/popover-DR6UQQvq.js
++++ b/dist/popover-DR6UQQvq.js
+@@ -5,7 +5,9 @@ import { t as useElementSize } from "./useElementSize-BJvbGHq8.js";
+ import { i as origin, n as AnimateActivity, r as getTransformOrigin, t as getElementRef } from "./getElementRef-Jw7gY0eV.js";
+ import { a as useBoundaryElement, n as Portal, t as Arrow } from "./arrow-CZ-Lw1QO.js";
+ import { c } from "react/compiler-runtime";
+-import { Activity, cloneElement, useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { cloneElement, useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
++const Activity = ReactDefault.Activity;
+ import { styled } from "styled-components";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { arrow, autoPlacement, autoUpdate, detectOverflow, flip, hide, offset, shift, useFloating } from "@floating-ui/react-dom";
+diff --git a/dist/textInput-Yp5lnvZK.js b/dist/textInput-Yp5lnvZK.js
+index 7d337ce5c5a1c189c9445bfd72e0addad7bfb154..6aedc55eaed0661c3f86aa2dfd3b7e3ffd0aea5b 100644
+--- a/dist/textInput-Yp5lnvZK.js
++++ b/dist/textInput-Yp5lnvZK.js
+@@ -6,7 +6,8 @@ import { n as Text } from "./stack-SbGBZ0x3.js";
+ import { t as Button } from "./button-Wii-24Xu.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { isValidElement, useEffect, useImperativeHandle, useRef } from "react";
++import ReactDefault from "react";
++const { isValidElement, useEffect, useImperativeHandle, useRef } = ReactDefault;
+ import { css, styled } from "styled-components";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { isValidElementType } from "react-is";
+diff --git a/dist/toast.js b/dist/toast.js
+index aac8cf2d9ee7b736655b9800dc82da78ff5c27a3..98ba0e6b54797fd0c4833d928e49e2a187aef354 100644
+--- a/dist/toast.js
++++ b/dist/toast.js
+@@ -6,7 +6,8 @@ import { t as Button } from "./button-Wii-24Xu.js";
+ import { t as Grid } from "./grid-BVZEj_Xe.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { startTransition, useContext, useState, useSyncExternalStore } from "react";
++import ReactDefault from "react";
++const { startTransition, useContext, useState, useSyncExternalStore } = ReactDefault;
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { AnimatePresence, motion, stagger } from "motion/react";
+ import { CloseIcon } from "@sanity/icons/Close";
+diff --git a/dist/tooltip.js b/dist/tooltip.js
+index 88ffdbc3021b9557427cb298f1a49997f7e1f8bd..5b5e45e1d06ef6e05abf34f13c6992ff662384b6 100644
+--- a/dist/tooltip.js
++++ b/dist/tooltip.js
+@@ -6,7 +6,9 @@ import { a as useBoundaryElement, n as Portal, r as usePortal, t as Arrow } from
+ import { t as Layer } from "./layer-B0tlPeLT.js";
+ import { c } from "react/compiler-runtime";
+ import { clsx } from "clsx/lite";
+-import { Activity, cloneElement, useContext, useEffect, useId, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { cloneElement, useContext, useEffect, useId, useImperativeHandle, useLayoutEffect, useRef, useState } = ReactDefault;
++const Activity = ReactDefault.Activity;
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { arrow, autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react-dom";
+ import { motion } from "motion/react";
+diff --git a/dist/useClickOutsideEvent-wGLGWBZN.js b/dist/useClickOutsideEvent-wGLGWBZN.js
+index 04070193c37478cd54233e037fe716fabd12dcda..56310f89807f67dcd7926fda0095db48fa38bbe1 100644
+--- a/dist/useClickOutsideEvent-wGLGWBZN.js
++++ b/dist/useClickOutsideEvent-wGLGWBZN.js
+@@ -1,6 +1,7 @@
+ import { o as EMPTY_ARRAY } from "./helpers-C8xxXAQC.js";
+ import { c } from "react/compiler-runtime";
+-import { useDebugValue, useEffect } from "react";
++import ReactDefault from "react";
++const { useDebugValue, useEffect } = ReactDefault;
+ import { useEffectEvent } from "use-effect-event";
+ /**
+ * @public
+diff --git a/dist/useElementSize-BJvbGHq8.js b/dist/useElementSize-BJvbGHq8.js
+index 5e1b737cd4abee0017a2596262b6a283164f2e29..0e9934c7a65cc9ce4e6941d068fc560729f84608 100644
+--- a/dist/useElementSize-BJvbGHq8.js
++++ b/dist/useElementSize-BJvbGHq8.js
+@@ -1,5 +1,6 @@
+ import { c } from "react/compiler-runtime";
+-import { useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useState } = ReactDefault;
+ /**
+ * @internal
+ */
+diff --git a/dist/useLayer-CUKYjJYq.js b/dist/useLayer-CUKYjJYq.js
+index b1132e1b199a10dff8064482d6e3b7260f4cfd85..57db8e8d8b228055eeaebef745a17715dc3190ad 100644
+--- a/dist/useLayer-CUKYjJYq.js
++++ b/dist/useLayer-CUKYjJYq.js
+@@ -2,7 +2,8 @@ import { a as rem, i as _responsive, n as _getArrayProp, o as EMPTY_ARRAY, r as
+ import { t as getTheme_v2 } from "./getTheme_v2-y09KqtEb.js";
+ import { t as getScopedTheme } from "./getScopedTheme-C-sZsyAz.js";
+ import { c } from "react/compiler-runtime";
+-import { createContext, useContext, useDebugValue, useEffect, useReducer, useSyncExternalStore } from "react";
++import ReactDefault from "react";
++const { createContext, useContext, useDebugValue, useEffect, useReducer, useSyncExternalStore } = ReactDefault;
+ import { ThemeProvider, css, styled, useTheme } from "styled-components";
+ import { jsx } from "react/jsx-runtime";
+ import { isValidElementType } from "react-is";

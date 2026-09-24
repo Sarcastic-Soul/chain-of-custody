@@ -1,0 +1,1266 @@
+diff --git a/lib/AddonDatasetProvider-DUOZLHQe.js b/lib/AddonDatasetProvider-DUOZLHQe.js
+index 07d8868a490206d4c89cb3c20fa3152643ff6253..3dda4622cb02d3004dd7a938cea88513437184a9 100644
+--- a/lib/AddonDatasetProvider-DUOZLHQe.js
++++ b/lib/AddonDatasetProvider-DUOZLHQe.js
+@@ -1,5 +1,6 @@
+ import { c as useWorkspace, i as useClient, n as DEFAULT_STUDIO_CLIENT_OPTIONS } from "./studioClient-BT5Lskzx.js";
+-import { useContext, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { AddonDatasetContext } from "sanity/_singletons";
+diff --git a/lib/BroadcastDisplayedDocument-CRWJofIF.js b/lib/BroadcastDisplayedDocument-CRWJofIF.js
+index cdd582feb37352f8dda815e5d6a174f8543fd267..95aab1f7516d46ece502fdf1cdc8fa3fca95ef0d 100644
+--- a/lib/BroadcastDisplayedDocument-CRWJofIF.js
++++ b/lib/BroadcastDisplayedDocument-CRWJofIF.js
+@@ -1,6 +1,7 @@
+ import { t as usePresentationParams } from "./usePresentationParams-B_1iItpx.js";
+ import { n as useDisplayedDocumentBroadcaster } from "./DisplayedDocumentBroadcaster-DDxnu-47.js";
+-import { memo, useEffect } from "react";
++import ReactDefault from "react";
++const { memo, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ /**
+ * Sanity Form input component that reads the current form state and broadcasts it to
+diff --git a/lib/CalendarFilter-FBthUBPx.js b/lib/CalendarFilter-FBthUBPx.js
+index 76c1552265f5c9639bbb1b966308b95dae217295..a2652eb1fc73a012ac7fe68e5af79a33c72c3860 100644
+--- a/lib/CalendarFilter-FBthUBPx.js
++++ b/lib/CalendarFilter-FBthUBPx.js
+@@ -3,7 +3,8 @@ import { n as TooltipDelayGroupProvider, o as Button$1 } from "./Tab-CXFVDpuN.js
+ import { t as useCurrentLocale } from "./useLocale-ChRJXddd.js";
+ import { c as useWeeksOfMonth, l as ARROW_KEYS, s as getWeekDayNames, u as DEFAULT_MONTH_NAMES } from "./utils-BAFnqK5R.js";
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+-import { useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Card, Label, Text } from "@sanity/ui";
+diff --git a/lib/CommandList-DkTFBzFx.js b/lib/CommandList-DkTFBzFx.js
+index 1df3b13bda05e2570f0e256edf11819034d50076..a079510c1598da24c4cc8733e631898b31291a6f 100644
+--- a/lib/CommandList-DkTFBzFx.js
++++ b/lib/CommandList-DkTFBzFx.js
+@@ -1,5 +1,6 @@
+ import { Jn as focusRingStyle } from "./PerspectiveProvider-KZEIz8JI.js";
+-import { Fragment, cloneElement, isValidElement, memo, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, cloneElement, isValidElement, memo, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Stack, rem } from "@sanity/ui";
+diff --git a/lib/CommentInput-_KSv5C1h.js b/lib/CommentInput-_KSv5C1h.js
+index 25e3abaf7c93d995d90b5e7efb1efd4b98ba5c6c..fe5cca128b7073bb33e27ca4e4fdf3e7d776d7e1 100644
+--- a/lib/CommentInput-_KSv5C1h.js
++++ b/lib/CommentInput-_KSv5C1h.js
+@@ -5,7 +5,8 @@ import { n as useCurrentUser, r as useUser, t as LoadingBlock } from "./LoadingB
+ import { n as Dialog$1, r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { t as CommandList } from "./CommandList-DkTFBzFx.js";
+ import { a as commentsLocaleNamespace, c as hasCommentMessageValue, d as useCommentHasChanged } from "./constants-BmQSFMsM.js";
+-import { useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { CommentInputContextV2, CommentsContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsDocumentLayout-CgIBAbQJ.js b/lib/CommentsDocumentLayout-CgIBAbQJ.js
+index 645fadaddcbc81ab33b108d0fbb4723e57c67816..476745bbd43d6b978b7dc2386887c7a67c0ea12e 100644
+--- a/lib/CommentsDocumentLayout-CgIBAbQJ.js
++++ b/lib/CommentsDocumentLayout-CgIBAbQJ.js
+@@ -1,6 +1,7 @@
+ import { t as useCommentsEnabled } from "./useCommentsEnabled-B44hWtng.js";
+ import { t as CommentsEnabledProvider } from "./CommentsEnabledProvider-D1sENq83.js";
+-import { memo, useState } from "react";
++import ReactDefault from "react";
++const { memo, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { CommentsAuthoringPathContextV2, CommentsSelectedPathContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsEnabledProvider-D1sENq83.js b/lib/CommentsEnabledProvider-D1sENq83.js
+index 0a560e51716066b4e1bfc69f3faee1cfb5346731..b88a6fee30f50140a59b996dcb962c0b09515391 100644
+--- a/lib/CommentsEnabledProvider-D1sENq83.js
++++ b/lib/CommentsEnabledProvider-D1sENq83.js
+@@ -1,7 +1,8 @@
+ import { $ as FEATURES, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { o as useSource } from "./studioClient-BT5Lskzx.js";
+ import { l as getPublishedId } from "./draftUtils-D3HJGQaW.js";
+-import { memo } from "react";
++import ReactDefault from "react";
++const { memo } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { CommentsEnabledContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsField-B5zinZxD.js b/lib/CommentsField-B5zinZxD.js
+index 7d2ff8dbd235ba5d616925cd7e2136b3390bc697..3ef993acaa0c9730e84baeb5665248b85c9ece09 100644
+--- a/lib/CommentsField-B5zinZxD.js
++++ b/lib/CommentsField-B5zinZxD.js
+@@ -8,7 +8,8 @@ import { t as useCommentsEnabled } from "./useCommentsEnabled-B44hWtng.js";
+ import { a as commentsLocaleNamespace, c as hasCommentMessageValue, l as isTextSelectionComment, t as COMMENTS_HIGHLIGHT_HUE_KEY, u as parseCommentFieldPath } from "./constants-BmQSFMsM.js";
+ import { l as useCommentsScroll, o as applyCommentsFieldAttr, t as CommentInput, u as useComments } from "./CommentInput-_KSv5C1h.js";
+ import { n as useCommentsSelectedPath, t as useCommentsUpsell } from "./useCommentsUpsell-dtlhkiSW.js";
+-import { useContext, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsAuthoringPathContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsField-a5KV1rAl.js b/lib/CommentsField-a5KV1rAl.js
+index 4cd1fe7eaabb5f8cd2922bc607c0adc51fb457f5..0ecf1a6da1873852449bda134b0dc154b58ffa5e 100644
+--- a/lib/CommentsField-a5KV1rAl.js
++++ b/lib/CommentsField-a5KV1rAl.js
+@@ -9,7 +9,8 @@ import { t as useAddonDataset } from "./useAddonDataset-BvCgByG6.js";
+ import { t as useCommentsEnabled } from "./useCommentsEnabled-BPc3788v.js";
+ import { t as useCommentsSelectedPath } from "./useCommentsSelectedPath-D5HXM3NF.js";
+ import { t as useCommentsUpsell } from "./useCommentsUpsell-a8ecO894.js";
+-import { useContext, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsAuthoringPathContext } from "sanity/_singletons";
+diff --git a/lib/CommentsInput-B1CuAZ4E.js b/lib/CommentsInput-B1CuAZ4E.js
+index 9e5a436b541581acaa3b0fb52557935d801b5cfe..8872143b577689569a3960e00482bd57f4ce0783 100644
+--- a/lib/CommentsInput-B1CuAZ4E.js
++++ b/lib/CommentsInput-B1CuAZ4E.js
+@@ -9,7 +9,8 @@ import { a as commentsLocaleNamespace, c as hasCommentMessageValue, l as isTextS
+ import { n as buildRangeDecorationSelectionsFromComments, t as COMMENT_INDICATORS } from "./buildRangeDecorationSelectionsFromComments-D_4InjBe.js";
+ import { c as applyInlineCommentIdAttr, l as useCommentsScroll, t as CommentInput, u as useComments } from "./CommentInput-_KSv5C1h.js";
+ import { n as useCommentsSelectedPath, t as useCommentsUpsell } from "./useCommentsUpsell-dtlhkiSW.js";
+-import { memo, startTransition, useEffect, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, startTransition, useEffect, useLayoutEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import debounce from "lodash-es/debounce.js";
+diff --git a/lib/CommentsInput-NQ0fH8Xf.js b/lib/CommentsInput-NQ0fH8Xf.js
+index 122ce15576be918711a9ea0ab8f553dc4337f465..18a148ffaa32bfd2151e24a088eb5c059936a741 100644
+--- a/lib/CommentsInput-NQ0fH8Xf.js
++++ b/lib/CommentsInput-NQ0fH8Xf.js
+@@ -10,7 +10,8 @@ import { t as useAddonDataset } from "./useAddonDataset-BvCgByG6.js";
+ import { t as useCommentsEnabled } from "./useCommentsEnabled-BPc3788v.js";
+ import { t as useCommentsSelectedPath } from "./useCommentsSelectedPath-D5HXM3NF.js";
+ import { t as useCommentsUpsell } from "./useCommentsUpsell-a8ecO894.js";
+-import { memo, startTransition, useEffect, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, startTransition, useEffect, useLayoutEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import debounce from "lodash-es/debounce.js";
+diff --git a/lib/CommentsInspector-C4ULjlEO.js b/lib/CommentsInspector-C4ULjlEO.js
+index ede1c53d45c0425920c2ae46c54be4be61824bb4..ebd4c189f5d2288716b75fee8982efb0014d805e 100644
+--- a/lib/CommentsInspector-C4ULjlEO.js
++++ b/lib/CommentsInspector-C4ULjlEO.js
+@@ -9,7 +9,8 @@ import { t as UpsellPanel } from "./UpsellPanel-DR_MbO2R.js";
+ import { l as useCommentsScroll, s as applyCommentsGroupAttr, t as CommentInput, u as useComments } from "./CommentInput-_KSv5C1h.js";
+ import { n as useCommentsSelectedPath, t as useCommentsUpsell } from "./useCommentsUpsell-dtlhkiSW.js";
+ import { n as ThreadCard, r as CommentDeleteDialog, t as CommentsListItem } from "./CommentsListItem-BIKrmutp.js";
+-import { Fragment, memo, useContext, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, memo, useContext, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsOnboardingContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsInspector-DYrrU7dI.js b/lib/CommentsInspector-DYrrU7dI.js
+index 93a8463e999a24af4cb09f670db0fe1b1e0aad4a..1407c6d2391f50fd84e71958bb7f23eb2cec0728 100644
+--- a/lib/CommentsInspector-DYrrU7dI.js
++++ b/lib/CommentsInspector-DYrrU7dI.js
+@@ -10,7 +10,8 @@ import { t as useCommentsEnabled } from "./useCommentsEnabled-BPc3788v.js";
+ import { t as useCommentsSelectedPath } from "./useCommentsSelectedPath-D5HXM3NF.js";
+ import { t as UpsellPanel } from "./UpsellPanel-DR_MbO2R.js";
+ import { t as useCommentsUpsell } from "./useCommentsUpsell-a8ecO894.js";
+-import { Fragment, useContext, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, useContext, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsOnboardingContext } from "sanity/_singletons";
+diff --git a/lib/CommentsListItem-BIKrmutp.js b/lib/CommentsListItem-BIKrmutp.js
+index 5d794eff6b0a0c2006d6cf151b9f79c879a87518..1a0122dfa2482f810ebfb99cd506df4b4ed36047 100644
+--- a/lib/CommentsListItem-BIKrmutp.js
++++ b/lib/CommentsListItem-BIKrmutp.js
+@@ -10,7 +10,8 @@ import { n as Dialog$1, r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { n as CircleSmallIcon, t as RingIcon } from "./Ring-lWbpjy6o.js";
+ import { a as commentsLocaleNamespace, c as hasCommentMessageValue, d as useCommentHasChanged, i as COMMENT_REACTION_OPTIONS, r as COMMENT_REACTION_EMOJIS, s as commentIntentIfDiffers, t as COMMENTS_HIGHLIGHT_HUE_KEY } from "./constants-BmQSFMsM.js";
+ import { a as applyCommentIdAttr, i as NormalBlock, n as MentionInlineBlock, r as CommentsAvatar, t as CommentInput, u as useComments } from "./CommentInput-_KSv5C1h.js";
+-import { Fragment, cloneElement, memo, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, cloneElement, memo, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { isPortableTextTextBlock } from "@sanity/types";
+diff --git a/lib/CommentsListItem-D8gZS5zG.js b/lib/CommentsListItem-D8gZS5zG.js
+index df5d684fabf8b35fd79058ef2912f4db3ed34be1..dd23433891a67ba1fd72c00006b6388a98b4c2ad 100644
+--- a/lib/CommentsListItem-D8gZS5zG.js
++++ b/lib/CommentsListItem-D8gZS5zG.js
+@@ -7,7 +7,8 @@ import { r as useUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { n as useRelativeTime, t as ContextMenuButton } from "./ContextMenuButton-5uoUDyWT.js";
+ import { n as Dialog$1, r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { a as COMMENT_REACTION_OPTIONS, b as commentsLocaleNamespace, c as CommentsAvatar, d as hasCommentMessageValue, f as isTextSelectionComment, h as applyCommentIdAttr, i as COMMENT_REACTION_EMOJIS, l as NormalBlock, m as useCommentHasChanged, n as COMMENTS_HIGHLIGHT_HUE_KEY, o as CommentInput, s as MentionInlineBlock, u as commentIntentIfDiffers } from "./useComments-DJUMzg63.js";
+-import { Fragment, cloneElement, memo, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, cloneElement, memo, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { isPortableTextTextBlock } from "@sanity/types";
+diff --git a/lib/CommentsSelectedPathProvider-C4CCOJV3.js b/lib/CommentsSelectedPathProvider-C4CCOJV3.js
+index 6c8ebc964d2e95e37d3f8797ebdfabdd6930ae3b..b3435f66ff9ae2a1cc200d4dbcbc0a455e63dbc3 100644
+--- a/lib/CommentsSelectedPathProvider-C4CCOJV3.js
++++ b/lib/CommentsSelectedPathProvider-C4CCOJV3.js
+@@ -1,7 +1,8 @@
+ import { $ as FEATURES, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { o as useSource } from "./studioClient-BT5Lskzx.js";
+ import { l as getPublishedId } from "./draftUtils-D3HJGQaW.js";
+-import { memo, useState } from "react";
++import ReactDefault from "react";
++const { memo, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { CommentsAuthoringPathContext, CommentsEnabledContext, CommentsSelectedPathContext } from "sanity/_singletons";
+diff --git a/lib/CommentsStudioLayout-DB9e2Qpw.js b/lib/CommentsStudioLayout-DB9e2Qpw.js
+index b82a7b8c9958b8e577a60a83b0bcbc24aa2adb91..b7e0836780a7edd75fa94ec7a1621587d0278123 100644
+--- a/lib/CommentsStudioLayout-DB9e2Qpw.js
++++ b/lib/CommentsStudioLayout-DB9e2Qpw.js
+@@ -1,6 +1,7 @@
+ import { $ as FEATURES, U as getDialogPropsFromContext, V as UpsellDialog, W as useUpsellContext, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { t as AddonDatasetProvider } from "./AddonDatasetProvider-DUOZLHQe.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsOnboardingContextV2, CommentsUpsellContextV2 } from "sanity/_singletons";
+diff --git a/lib/CommentsStudioLayout-DbAyDt-h.js b/lib/CommentsStudioLayout-DbAyDt-h.js
+index 75c8b18d16c0458b6f092263731e786b75c14d91..1f40aa5176a79fdd136463edd53b595e16992a7c 100644
+--- a/lib/CommentsStudioLayout-DbAyDt-h.js
++++ b/lib/CommentsStudioLayout-DbAyDt-h.js
+@@ -1,6 +1,7 @@
+ import { $ as FEATURES, U as getDialogPropsFromContext, V as UpsellDialog, W as useUpsellContext, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { t as AddonDatasetProvider } from "./AddonDatasetProvider-DUOZLHQe.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { CommentsOnboardingContext, CommentsUpsellContext } from "sanity/_singletons";
+diff --git a/lib/ContextMenuButton-5uoUDyWT.js b/lib/ContextMenuButton-5uoUDyWT.js
+index ddf6f6f48c9d056d13c7d1a30546e3cf338a1c6e..6513e2b42da0410aac35510cb649f3ace4268201 100644
+--- a/lib/ContextMenuButton-5uoUDyWT.js
++++ b/lib/ContextMenuButton-5uoUDyWT.js
+@@ -2,7 +2,8 @@ import { t as useTranslation } from "./useTranslation-Cqs6Itwv.js";
+ import { o as Button } from "./Tab-CXFVDpuN.js";
+ import { r as intlCache } from "./Translate-YUHPpk6j.js";
+ import { t as useCurrentLocale } from "./useLocale-ChRJXddd.js";
+-import { useEffect, useReducer } from "react";
++import ReactDefault from "react";
++const { useEffect, useReducer } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { differenceInDays } from "date-fns/differenceInDays";
+diff --git a/lib/DisplayedDocumentBroadcaster-DDxnu-47.js b/lib/DisplayedDocumentBroadcaster-DDxnu-47.js
+index 5ae13d6d3fda7b591b0723696c1329c695f6e178..b26b3266e4f95dd8d55a5485d425fcf91b7e0a69 100644
+--- a/lib/DisplayedDocumentBroadcaster-DDxnu-47.js
++++ b/lib/DisplayedDocumentBroadcaster-DDxnu-47.js
+@@ -1,4 +1,5 @@
+-import { useContext, useEffect } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { PresentationDisplayedDocumentContext } from "sanity/_singletons";
+diff --git a/lib/GlobalPerspectiveMenu-B9VelA5i.js b/lib/GlobalPerspectiveMenu-B9VelA5i.js
+index 5145c6e0aa23fa532739d660caa35eb13366ad73..c464862595844c18b2965548d9fbb7ada53667e3 100644
+--- a/lib/GlobalPerspectiveMenu-B9VelA5i.js
++++ b/lib/GlobalPerspectiveMenu-B9VelA5i.js
+@@ -15,7 +15,8 @@ import { i as CONTENT_RELEASES_TIME_ZONE_SCOPE } from "./useScheduledDraftMenuAc
+ import { a as useScheduledDraftsEnabled } from "./SingleDocReleaseUpsellProvider-DflYT6dj.js";
+ import { a as useReleasePermissions, f as useCreateReleaseMetadata, n as NavigatedToScheduledDrafts, r as CreateReleaseDialog, t as NavigatedToReleasesOverview } from "./navigation.telemetry-BkPysNRj.js";
+ import { t as ToneIcon } from "./ToneIcon-DgovBh2L.js";
+-import { memo, useEffect, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useLayoutEffect, useRef, useState } = ReactDefault;
+ import { from } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/LiveQueries-B4YKK8_m.js b/lib/LiveQueries-B4YKK8_m.js
+index 01977beeee5bfbf28846e567d35e92345e4a8d38..eb11eb5914660667ee37bf7a2538617c0d222901 100644
+--- a/lib/LiveQueries-B4YKK8_m.js
++++ b/lib/LiveQueries-B4YKK8_m.js
+@@ -1,6 +1,7 @@
+ import { t as variantsApiClient } from "./variantsApiClient-Bjy3xOhq.js";
+ import { l as MIN_LOADER_QUERY_LISTEN_HEARTBEAT_INTERVAL, o as LOADER_QUERY_GC_INTERVAL, t as API_VERSION } from "./constants-CW-F48Fx.js";
+-import { memo, startTransition, useDeferredValue, useEffect, useReducer, useState } from "react";
++import ReactDefault from "react";
++const { memo, startTransition, useDeferredValue, useEffect, useReducer, useState } = ReactDefault;
+ import { catchError, scan, throwError } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx } from "react/jsx-runtime";
+diff --git a/lib/LoadingBlock-Bk0ctvu_.js b/lib/LoadingBlock-Bk0ctvu_.js
+index 2a0af82794befeca1bfe53398b6a414f5180e87a..fe1aadf5a8dcf4fc90a05383acb16f2250b944d5 100644
+--- a/lib/LoadingBlock-Bk0ctvu_.js
++++ b/lib/LoadingBlock-Bk0ctvu_.js
+@@ -1,7 +1,8 @@
+ import { d as useUserStore } from "./datastores-DkCuUqzn.js";
+ import { t as useTranslation } from "./useTranslation-Cqs6Itwv.js";
+ import { o as useSource } from "./studioClient-BT5Lskzx.js";
+-import { useMemo } from "react";
++import ReactDefault from "react";
++const { useMemo } = ReactDefault;
+ import { concat, from, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/MenuGroup-ydxgC1ws.js b/lib/MenuGroup-ydxgC1ws.js
+index 316503bec54a1b5be16d0d8aecbb55f6206fdbc3..cc904a4f57f1b4c800abb5f80317a519244b1c0d 100644
+--- a/lib/MenuGroup-ydxgC1ws.js
++++ b/lib/MenuGroup-ydxgC1ws.js
+@@ -1,5 +1,6 @@
+ import { s as Tooltip } from "./Tab-CXFVDpuN.js";
+-import { useRef } from "react";
++import ReactDefault from "react";
++const { useRef } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Button, Dialog, Text, useClickOutsideEvent, useGlobalKeyDown, useLayer } from "@sanity/ui";
+diff --git a/lib/PaneContainer-DcNQEaq-.js b/lib/PaneContainer-DcNQEaq-.js
+index a2ea6dc196405c4153c8951cd9ba9ef701d6fb47..4a0efa9e71f994acde0da49983abfb4e2764526f 100644
+--- a/lib/PaneContainer-DcNQEaq-.js
++++ b/lib/PaneContainer-DcNQEaq-.js
+@@ -3,7 +3,9 @@ import { i as MenuButton$1, n as TooltipDelayGroupProvider, o as Button$1, r as
+ import { c as BackLink, d as assignId, l as PaneHeaderActions, u as PaneItem, v as useStructureToolSetting } from "./structureTool-Bx2p_qtJ.js";
+ import { a as usePaneLayout, i as Pane, n as PaneHeader$1, r as usePane, t as useStructureTool } from "./useStructureTool-CtuZ6eqW.js";
+ import { i as PaneContent } from "./constants-CbArWXc8.js";
+-import { Activity, memo, useEffect, useId, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useId, useState } = ReactDefault;
++const Activity = ReactDefault.Activity;
+ import { NEVER, asyncScheduler, concat, defer, filter, fromEvent, map, merge, mergeMap, of, partition, share, throttleTime, throwError, timer } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/PerspectiveProvider-KZEIz8JI.js b/lib/PerspectiveProvider-KZEIz8JI.js
+index 086317d527d592c8888957df8418d5d85cb77108..a5309e07f8a0d6f8cb2370805ed5d53d6a6d6601 100644
+--- a/lib/PerspectiveProvider-KZEIz8JI.js
++++ b/lib/PerspectiveProvider-KZEIz8JI.js
+@@ -18,7 +18,8 @@ import { g as readVersionType, n as isValidDate, p as isPublishedVersion, r as D
+ import { n as CircleSmallIcon, t as RingIcon } from "./Ring-lWbpjy6o.js";
+ import { t as releasesLocaleNamespace } from "./i18n-CVs4eepm.js";
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+-import { Children, Component, Fragment, PureComponent, Suspense, cloneElement, isValidElement, memo, startTransition, use, useCallback, useContext, useEffect, useEffectEvent, useId, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, useSyncExternalStore } from "react";
++import ReactDefault from "react";
++const { Children, Component, Fragment, PureComponent, Suspense, cloneElement, isValidElement, memo, startTransition, use, useCallback, useContext, useEffect, useEffectEvent, useId, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, useSyncExternalStore } = ReactDefault;
+ import { BehaviorSubject, EMPTY, NEVER, Observable, Subject, catchError, combineLatest, concat, concatMap, concatWith, debounceTime, defaultIfEmpty, defer, delay, delayWhen, distinctUntilChanged, filter, find, first, firstValueFrom, from, map, merge, mergeMap, of, pipe, reduce, retry, scan, shareReplay, startWith, switchMap, switchScan, take, takeWhile, tap, throwError, timer, toArray, zip, zipWith } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/PostMessageDocuments-Cj409Kjw.js b/lib/PostMessageDocuments-Cj409Kjw.js
+index 2a5f3fda3637b81e92ccf8aa271033364f32c856..ab60616c3d2ee0f30730a210d623af9c0693b152 100644
+--- a/lib/PostMessageDocuments-Cj409Kjw.js
++++ b/lib/PostMessageDocuments-Cj409Kjw.js
+@@ -1,5 +1,6 @@
+ import { t as API_VERSION } from "./constants-CW-F48Fx.js";
+-import { memo, useEffect } from "react";
++import ReactDefault from "react";
++const { memo, useEffect } = ReactDefault;
+ import { filter, first, merge, shareReplay } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { RELEASES_STUDIO_CLIENT_OPTIONS, VARIANTS_STUDIO_CLIENT_OPTIONS, isReleasePerspective, useClient } from "sanity";
+diff --git a/lib/PostMessagePerspective-BVF1X-0a.js b/lib/PostMessagePerspective-BVF1X-0a.js
+index 01132df76c9cc81ea937c9a22d6565b295547747..bfabfd016521f777513c87c8a7881256c276e544 100644
+--- a/lib/PostMessagePerspective-BVF1X-0a.js
++++ b/lib/PostMessagePerspective-BVF1X-0a.js
+@@ -1,4 +1,5 @@
+-import { memo, startTransition, useEffect } from "react";
++import ReactDefault from "react";
++const { memo, startTransition, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ const PostMessagePerspective = (props) => {
+ 	let $ = c(12), { comlink, perspective, variant, setHandlesPerspectiveChange, setHandlesVariantChange } = props, t0, t1;
+diff --git a/lib/PostMessagePreviewSnapshots-BeYzxXtQ.js b/lib/PostMessagePreviewSnapshots-BeYzxXtQ.js
+index 778cdacdcbdba09d99e593343f791a64d7597691..598d0a84aac679de56cb537244f63158afd2bcf7 100644
+--- a/lib/PostMessagePreviewSnapshots-BeYzxXtQ.js
++++ b/lib/PostMessagePreviewSnapshots-BeYzxXtQ.js
+@@ -1,4 +1,5 @@
+-import { memo, useEffect, useRef } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useRef } = ReactDefault;
+ import { NEVER, Subject, combineLatest, debounceTime, filter, map, merge, share, skipWhile, switchMap, takeUntil } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { getDraftId, getPublishedId, useDocumentPreviewStore, useSchema } from "sanity";
+diff --git a/lib/PostMessageRefreshMutations-ClPJDKPe.js b/lib/PostMessageRefreshMutations-ClPJDKPe.js
+index 6b5adf9c298ebccbe97726993a7d0c15cb92aef4..1af29323614a59ae56e174c20696ca4c2c75927d 100644
+--- a/lib/PostMessageRefreshMutations-ClPJDKPe.js
++++ b/lib/PostMessageRefreshMutations-ClPJDKPe.js
+@@ -1,4 +1,5 @@
+-import { memo, startTransition, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { memo, startTransition, useEffect, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { getPublishedId, useEditState, usePerspective } from "sanity";
+diff --git a/lib/PostMessageSchema-4q2OtvIm.js b/lib/PostMessageSchema-4q2OtvIm.js
+index a8838ebd3187276a3b6effb06147b3634635681d..235b207a546908660d68d4ee167e01ca98fb428f 100644
+--- a/lib/PostMessageSchema-4q2OtvIm.js
++++ b/lib/PostMessageSchema-4q2OtvIm.js
+@@ -1,5 +1,6 @@
+ import { t as API_VERSION } from "./constants-CW-F48Fx.js";
+-import { isValidElement, memo, useEffect } from "react";
++import ReactDefault from "react";
++const { isValidElement, memo, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { RELEASES_STUDIO_CLIENT_OPTIONS, VARIANTS_STUDIO_CLIENT_OPTIONS, getPublishedId, isReleasePerspective, useClient, useWorkspace } from "sanity";
+diff --git a/lib/PostMessageTelemetry-Cfe_WCwk.js b/lib/PostMessageTelemetry-Cfe_WCwk.js
+index 8d6422ab9c8ad8100fae1656b5a429459064666e..ec7b74c033ec5bd763dfd3e825bd0ea7c06aba1b 100644
+--- a/lib/PostMessageTelemetry-Cfe_WCwk.js
++++ b/lib/PostMessageTelemetry-Cfe_WCwk.js
+@@ -1,4 +1,5 @@
+-import { memo, useEffect } from "react";
++import ReactDefault from "react";
++const { memo, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { useTelemetry } from "@sanity/telemetry/react";
+ const PostMessageTelemetry = (props) => {
+diff --git a/lib/PresentationToolGrantsCheck-CUXKfdL5.js b/lib/PresentationToolGrantsCheck-CUXKfdL5.js
+index 2b4876f5996b782a5c2447f7697cb3b9f1b792d2..ff649129f3b374ae3f423a2c9630cd024beabe7b 100644
+--- a/lib/PresentationToolGrantsCheck-CUXKfdL5.js
++++ b/lib/PresentationToolGrantsCheck-CUXKfdL5.js
+@@ -4,7 +4,8 @@ import { r as isAgentBundleName$1 } from "./createAgentBundlesStore-BJwwD0vJ.js"
+ import { a as EDIT_INTENT_MODE, c as MAX_TIME_TO_OVERLAYS_CONNECTION, d as TIME_TO_SHOW_OVERLAYS_CONNECTION_STATUS, s as MAX_TIME_TO_IFRAME_LOAD, t as API_VERSION, u as POPUP_CHECK_INTERVAL } from "./constants-CW-F48Fx.js";
+ import { a as presentationLocaleNamespace, i as usePresentationVariant, n as PresentationSpinner, r as usePresentationTool, t as usePresentationNavigate } from "./usePresentationNavigate-Ca4fJuUG.js";
+ import { t as DisplayedDocumentBroadcasterProvider } from "./DisplayedDocumentBroadcaster-DDxnu-47.js";
+-import { Suspense, lazy, memo, use, useContext, useEffect, useId, useImperativeHandle, useLayoutEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
++import ReactDefault from "react";
++const { Suspense, lazy, memo, use, useContext, useEffect, useId, useImperativeHandle, useLayoutEffect, useReducer, useRef, useState, useSyncExternalStore } = ReactDefault;
+ import { of, throwError } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/QRCodeSVG-CKTMnhGX.js b/lib/QRCodeSVG-CKTMnhGX.js
+index 1404e268aea542029b739d15472ecc81302d167e..0797c4dce93e8eff801d49436480164a677851f7 100644
+--- a/lib/QRCodeSVG-CKTMnhGX.js
++++ b/lib/QRCodeSVG-CKTMnhGX.js
+@@ -1,4 +1,5 @@
+-import { memo } from "react";
++import ReactDefault from "react";
++const { memo } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { motion } from "motion/react";
+diff --git a/lib/ReleaseAvatar-Begyy9R1.js b/lib/ReleaseAvatar-Begyy9R1.js
+index 9787db793ba1acd55c4ccc379ccab86ca8541d28..545059555e6ddc43062be19c1bd692ee6df50a44 100644
+--- a/lib/ReleaseAvatar-Begyy9R1.js
++++ b/lib/ReleaseAvatar-Begyy9R1.js
+@@ -4,7 +4,8 @@ import { Ot as RELEASE_TYPES_TONES, St as isReleaseDocument, ft as isDraftPerspe
+ import { r as useUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { r as isAgentBundleName } from "./createAgentBundlesStore-BJwwD0vJ.js";
+ import { n as CircleSmallIcon, t as RingIcon } from "./Ring-lWbpjy6o.js";
+-import { useContext, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useState } = ReactDefault;
+ import { EMPTY } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/ReleasesMetadataProvider-_mmLGiIA.js b/lib/ReleasesMetadataProvider-_mmLGiIA.js
+index 1803591c45bcc9aeb2cada1ccd77a40927faa215..c1ce38102b16b7b99a01524e6d1f22dba8682589 100644
+--- a/lib/ReleasesMetadataProvider-_mmLGiIA.js
++++ b/lib/ReleasesMetadataProvider-_mmLGiIA.js
+@@ -1,5 +1,6 @@
+ import { Nt as useReleasesStore } from "./useActiveReleases-Df_zq_RC.js";
+-import { useContext, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { ReleasesMetadataContext } from "sanity/_singletons";
+diff --git a/lib/ReleasesStudioLayout-CELa5Iu4.js b/lib/ReleasesStudioLayout-CELa5Iu4.js
+index 7af02cf6b2c6d2cfed7df8180445859f157be07d..0210cd8c0ba28c4fb9f070dc5b9c3a2478393e45 100644
+--- a/lib/ReleasesStudioLayout-CELa5Iu4.js
++++ b/lib/ReleasesStudioLayout-CELa5Iu4.js
+@@ -6,7 +6,8 @@ import { bt as isCardinalityOneRelease, t as useActiveReleases } from "./useActi
+ import { n as Dialog$1 } from "./MenuGroup-ydxgC1ws.js";
+ import { t as useReleasesToolAvailable } from "./useReleasesToolAvailable-DeL2QvId.js";
+ import { t as ReleasesMetadataProvider } from "./ReleasesMetadataProvider-_mmLGiIA.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { BehaviorSubject, catchError, firstValueFrom, map, of, shareReplay, switchMap, tap, timer } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/ReleasesTool-BnrT4tmF.js b/lib/ReleasesTool-BnrT4tmF.js
+index 587661a0605af6256eb01bd63a91083c8ae4e230..cfffce6a73f33398a04b94daf0768f5fa644cd83 100644
+--- a/lib/ReleasesTool-BnrT4tmF.js
++++ b/lib/ReleasesTool-BnrT4tmF.js
+@@ -29,7 +29,8 @@ import { t as useDocumentPreviewValues } from "./useDocumentPreviewValues-BbMKxy
+ import { n as useReleasesMetadataProvider } from "./ReleasesMetadataProvider-_mmLGiIA.js";
+ import { a as Table, c as DetailIdentity, i as DocumentTable, l as DetailBackButton, n as EditedByAvatar, o as Headers, s as DetailPropertiesPanel, t as searchDocumentRelease, u as DetailActionRail } from "./searchDocumentRelease-CpSFbQA2.js";
+ import { n as CalendarDay, t as CalendarFilter } from "./CalendarFilter-FBthUBPx.js";
+-import { memo, useEffect, useId, useMemo, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useId, useMemo, useRef, useState } = ReactDefault;
+ import { BehaviorSubject, catchError, combineLatest, defer, distinctUntilChanged, expand, filter, from, map, merge, mergeMap, of, reduce, scan, shareReplay, skip, startWith, switchMap, tap, toArray } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/SchedulePublishingUpsellProvider-CeuVgc75.js b/lib/SchedulePublishingUpsellProvider-CeuVgc75.js
+index b12570325db97484bffe4d5b68d15996124aa0be..628a4521d7a19cf797433a2c900d24580019992a 100644
+--- a/lib/SchedulePublishingUpsellProvider-CeuVgc75.js
++++ b/lib/SchedulePublishingUpsellProvider-CeuVgc75.js
+@@ -1,5 +1,6 @@
+ import { U as getDialogPropsFromContext, V as UpsellDialog, W as useUpsellContext } from "./PerspectiveProvider-KZEIz8JI.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { SchedulePublishUpsellContext } from "sanity/_singletons";
+diff --git a/lib/ScheduledPublishingEnabledProvider-BdW-k2dZ.js b/lib/ScheduledPublishingEnabledProvider-BdW-k2dZ.js
+index 60f750fdb4b627a00481b772bc7cd42e60077dcf..35c436232e513d38a7db9c3a10e3722fd836120d 100644
+--- a/lib/ScheduledPublishingEnabledProvider-BdW-k2dZ.js
++++ b/lib/ScheduledPublishingEnabledProvider-BdW-k2dZ.js
+@@ -1,6 +1,7 @@
+ import { $ as FEATURES, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { c as useWorkspace, i as useClient, n as DEFAULT_STUDIO_CLIENT_OPTIONS } from "./studioClient-BT5Lskzx.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { catchError, map, of, shareReplay } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+diff --git a/lib/SearchProvider-mOWPUR3B.js b/lib/SearchProvider-mOWPUR3B.js
+index c61e17ccc42157d960df8ea2ddda1cf80ca21a83..09688f51ff8369289a4a8330479077dc01636284 100644
+--- a/lib/SearchProvider-mOWPUR3B.js
++++ b/lib/SearchProvider-mOWPUR3B.js
+@@ -11,7 +11,8 @@ import { n as useCurrentUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { o as truncateString } from "./ReleaseAvatar-Begyy9R1.js";
+ import { r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { t as CommandList } from "./CommandList-DkTFBzFx.js";
+-import { Fragment, isValidElement, memo, useContext, useDeferredValue, useEffect, useEffectEvent, useId, useReducer, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, isValidElement, memo, useContext, useDeferredValue, useEffect, useEffectEvent, useId, useReducer, useRef, useState } = ReactDefault;
+ import { Subject, map, merge, of, startWith } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/SingleDocReleaseUpsellProvider-DflYT6dj.js b/lib/SingleDocReleaseUpsellProvider-DflYT6dj.js
+index cb1cda342ee253d3c84f427410ecf906e31f442c..8b966d502db287ff5a3c527774958b235d3c36d9 100644
+--- a/lib/SingleDocReleaseUpsellProvider-DflYT6dj.js
++++ b/lib/SingleDocReleaseUpsellProvider-DflYT6dj.js
+@@ -1,6 +1,7 @@
+ import { $ as FEATURES, U as getDialogPropsFromContext, V as UpsellDialog, W as useUpsellContext, et as useFeatureEnabled } from "./PerspectiveProvider-KZEIz8JI.js";
+ import { o as useSource } from "./studioClient-BT5Lskzx.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { SingleDocReleaseEnabledContext, SingleDocReleaseUpsellContext } from "sanity/_singletons";
+diff --git a/lib/StructureToolProvider-DXy6_9L0.js b/lib/StructureToolProvider-DXy6_9L0.js
+index 0fc34886a4af70cfa8472b8e4d464240a0ca3cf1..6b1b27b3beffa87987db0a40173fad0468e4b1d3 100644
+--- a/lib/StructureToolProvider-DXy6_9L0.js
++++ b/lib/StructureToolProvider-DXy6_9L0.js
+@@ -1,4 +1,5 @@
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { StructureToolContext } from "sanity/_singletons";
+diff --git a/lib/Tab-CXFVDpuN.js b/lib/Tab-CXFVDpuN.js
+index 76195c7ee3e4082cddf2e79b43565d6b7a2be7f9..03aea09292fcb0b7197b6ec088e70f62dcb93497 100644
+--- a/lib/Tab-CXFVDpuN.js
++++ b/lib/Tab-CXFVDpuN.js
+@@ -1,4 +1,5 @@
+-import { isValidElement, useContext } from "react";
++import ReactDefault from "react";
++const { isValidElement, useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { SourceContext } from "sanity/_singletons";
+diff --git a/lib/TasksDocumentInputLayout-Dsc6OqE3.js b/lib/TasksDocumentInputLayout-Dsc6OqE3.js
+index 0e965188f9991aa29219cf8f682ee46b28bdee0a..fe76e4b8a086b8b4c644268a224f2fad77c819af 100644
+--- a/lib/TasksDocumentInputLayout-Dsc6OqE3.js
++++ b/lib/TasksDocumentInputLayout-Dsc6OqE3.js
+@@ -1,7 +1,8 @@
+ import { l as getPublishedId, y as isVersionId } from "./draftUtils-D3HJGQaW.js";
+ import { t as useTasksEnabled } from "./useTasksEnabled-DBNZp6wF.js";
+ import { t as useTasks } from "./useTasks-I977dBmi.js";
+-import { useContext, useEffect } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { IsLastPaneContext } from "sanity/_singletons";
+diff --git a/lib/TasksStudioActiveToolLayout-jieNM9sm.js b/lib/TasksStudioActiveToolLayout-jieNM9sm.js
+index 8085c7788ebc3c3ac2871f6e8dc8907c03f81226..7f6f0cf2a13abba9ac0684d41a2e6adb803494e5 100644
+--- a/lib/TasksStudioActiveToolLayout-jieNM9sm.js
++++ b/lib/TasksStudioActiveToolLayout-jieNM9sm.js
+@@ -27,7 +27,8 @@ import { r as CommentDeleteDialog$1, t as CommentsListItem$1 } from "./CommentsL
+ import { t as useTasks } from "./useTasks-I977dBmi.js";
+ import { n as getTargetDocumentId, r as getTargetValue, t as getMentionedUsers } from "./utils-1iCQse9Y.js";
+ import { a as TaskDuplicated, c as TaskRemoved, i as TaskCreated, l as TaskStatusChanged, n as TASKS_SIDEBAR_SEARCH_PARAM, r as TASKS_VIEW_MODE_SEARCH_PARAM, t as TASKS_SELECTED_TASK_SEARCH_PARAM } from "./types-B8Ny1dM-.js";
+-import { Fragment, memo, startTransition, useContext, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, memo, startTransition, useContext, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { MentionUserContext } from "sanity/_singletons";
+diff --git a/lib/TasksStudioLayout-BumntEnK.js b/lib/TasksStudioLayout-BumntEnK.js
+index e19ddc9f0d559380c7e50e0936495747f341e7f1..4625360ef8c0f30a160e603cb3a4de5272d7748d 100644
+--- a/lib/TasksStudioLayout-BumntEnK.js
++++ b/lib/TasksStudioLayout-BumntEnK.js
+@@ -5,7 +5,8 @@ import { t as useAddonDataset } from "./useAddonDataset-BvCgByG6.js";
+ import { t as useTasksEnabled } from "./useTasksEnabled-DBNZp6wF.js";
+ import { t as AddonDatasetProvider } from "./AddonDatasetProvider-DUOZLHQe.js";
+ import { n as TASKS_SIDEBAR_SEARCH_PARAM, o as TaskLinkCopied, r as TASKS_VIEW_MODE_SEARCH_PARAM, s as TaskLinkOpened, t as TASKS_SELECTED_TASK_SEARCH_PARAM } from "./types-B8Ny1dM-.js";
+-import { useEffect, useReducer, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useReducer, useState } = ReactDefault;
+ import { catchError, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/TimeZoneButton-BBkJ08os.js b/lib/TimeZoneButton-BBkJ08os.js
+index 28b11e3c36e5fcc201a0dbd2eaa40055b67e3ecc..d9ba0e77b2109bc3decb00204a0ddf01999c3c9e 100644
+--- a/lib/TimeZoneButton-BBkJ08os.js
++++ b/lib/TimeZoneButton-BBkJ08os.js
+@@ -10,7 +10,8 @@ import { n as createAgentBundlesStore, r as isAgentBundleName, t as INITIAL_STAT
+ import { t as MenuGroup$1 } from "./MenuGroup-ydxgC1ws.js";
+ import { d as useDialogTimeZone } from "./utils-BAFnqK5R.js";
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+-import { memo, useContext, useEffect, useId, useLayoutEffect, useReducer, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useContext, useEffect, useId, useLayoutEffect, useReducer, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { ChangeIndicatorTrackerContextGetSnapshot, ChangeIndicatorTrackerContextStore, FormFieldPresenceContext, PresenceTrackerContextGetSnapshot, PresenceTrackerContextStore } from "sanity/_singletons";
+diff --git a/lib/Tool-BX_fp6rh.js b/lib/Tool-BX_fp6rh.js
+index 94cea45060d7b65bf4f911f3cc4efef2b6a2674e..dea7cb78af96b3e72e694528456bc122954d569c 100644
+--- a/lib/Tool-BX_fp6rh.js
++++ b/lib/Tool-BX_fp6rh.js
+@@ -15,7 +15,8 @@ import { a as useScheduledDraftsEnabled } from "./SingleDocReleaseUpsellProvider
+ import { n as SchedulesProvider, r as useSchedules } from "./schedules-4mdOkMiN.js";
+ import { t as UpsellPanel } from "./UpsellPanel-DR_MbO2R.js";
+ import { t as CalendarFilter } from "./CalendarFilter-FBthUBPx.js";
+-import { useEffect, useMemo, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useMemo, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { Badge, Button, Card, Container, Heading, Inline, Label, Text, useTheme } from "@sanity/ui";
+diff --git a/lib/Translate-YUHPpk6j.js b/lib/Translate-YUHPpk6j.js
+index 28fb37a92cef2aa8406b02fc3cef61b372a4efea..4a27f1aac261cd67da90171f9a88b3739a52a29a 100644
+--- a/lib/Translate-YUHPpk6j.js
++++ b/lib/Translate-YUHPpk6j.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { LocaleContext } from "sanity/_singletons";
+diff --git a/lib/VariantsStudioNavbar-DdhItC9j.js b/lib/VariantsStudioNavbar-DdhItC9j.js
+index 4b808694e0383ea4abdd410e736f2c32712055e7..e9e2b9f4db9977e46e2999d0daf1cc6dc0e9de56 100644
+--- a/lib/VariantsStudioNavbar-DdhItC9j.js
++++ b/lib/VariantsStudioNavbar-DdhItC9j.js
+@@ -9,7 +9,8 @@ import { _ as useGetDefaultPerspective, g as useSetPerspective } from "./release
+ import { t as variantsLocaleNamespace } from "./i18n-Bg4NCDZK.js";
+ import { r as AnimatedTextWidth, s as useSetVariant, t as GlobalPerspectiveMenu } from "./GlobalPerspectiveMenu-B9VelA5i.js";
+ import { t as useReleasesToolAvailable } from "./useReleasesToolAvailable-DeL2QvId.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { Card, Text, TextInput } from "@sanity/ui";
+diff --git a/lib/VariantsTool-CFFIJGPX.js b/lib/VariantsTool-CFFIJGPX.js
+index 95af52c13b2b4cd87fd6ac9bcf0aad79ebb7de86..9dc1bb9b73320af1321347d66ed032cbd9cc1e8d 100644
+--- a/lib/VariantsTool-CFFIJGPX.js
++++ b/lib/VariantsTool-CFFIJGPX.js
+@@ -20,7 +20,8 @@ import { t as VARIANTS_INTENT } from "./plugin-CJIYwAvR.js";
+ import { t as ToneIcon } from "./ToneIcon-DgovBh2L.js";
+ import { t as useDocumentPreviewValues } from "./useDocumentPreviewValues-BbMKxypq.js";
+ import { c as DetailIdentity, i as DocumentTable, l as DetailBackButton, o as Headers, r as EditedByCell, s as DetailPropertiesPanel, t as searchDocumentRelease, u as DetailActionRail } from "./searchDocumentRelease-CpSFbQA2.js";
+-import { memo, useEffect, useId, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useId, useRef, useState } = ReactDefault;
+ import { defer, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/ViteDevServerStopped-BE_YuUiZ.js b/lib/ViteDevServerStopped-BE_YuUiZ.js
+index b45cbe9c49ca999835032d7586d824ff60908384..96a4d36b3d172711ba340ebb1ff2d0e79ad35df7 100644
+--- a/lib/ViteDevServerStopped-BE_YuUiZ.js
++++ b/lib/ViteDevServerStopped-BE_YuUiZ.js
+@@ -1,4 +1,5 @@
+-import { useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Card, Container, Heading, Stack, Text } from "@sanity/ui";
+diff --git a/lib/WorkspaceLoader-B3OqQbXW.js b/lib/WorkspaceLoader-B3OqQbXW.js
+index a5a280b6dc706567ed4657f8afc053f2338bd917..a219add0f505b84ad6bf0e0b4a6b17ca898c2f2b 100644
+--- a/lib/WorkspaceLoader-B3OqQbXW.js
++++ b/lib/WorkspaceLoader-B3OqQbXW.js
+@@ -31,7 +31,8 @@ import { r as schedules } from "./plugin-D0Xdg4-E.js";
+ import { n as tasksLocaleNamespace, r as tasksUsEnglishLocaleBundle, t as useTasksNavigation } from "./useTasksNavigation-DVWT3Woz.js";
+ import { t as useTasksEnabled } from "./useTasksEnabled-DBNZp6wF.js";
+ import { r as variants } from "./plugin-CJIYwAvR.js";
+-import { Fragment, Suspense, isValidElement, lazy, memo, startTransition, useCallback, useContext, useEffect, useId, useInsertionEffect, useMemo, useReducer, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, Suspense, isValidElement, lazy, memo, startTransition, useCallback, useContext, useEffect, useId, useInsertionEffect, useMemo, useReducer, useRef, useState } = ReactDefault;
+ import { BehaviorSubject, EMPTY, ReplaySubject, Subject, catchError, combineLatest, concat, debounce, defer, distinctUntilChanged, firstValueFrom, forkJoin, from, fromEvent, map, merge, mergeMap, of, retry, share, shareReplay, skip, startWith, switchMap, take, tap, timer } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/_createContext.js b/lib/_createContext.js
+index 8aad96bee480a936a509a4dec7e130e33189713a..d581e1537727d74fb2266447d5dc5f1b0dacea52 100644
+--- a/lib/_createContext.js
++++ b/lib/_createContext.js
+@@ -1,5 +1,6 @@
+ import { t as SANITY_VERSION } from "./version-B4zeEkMG.js";
+-import { createContext } from "react";
++import ReactDefault from "react";
++const { createContext } = ReactDefault;
+ const MISSING_CONTEXT_HELP_URL = "https://www.sanity.io/help/missing-context-error";
+ /**
+ * @internal
+diff --git a/lib/buildTextSelectionFromFragment-C9yY5k8i.js b/lib/buildTextSelectionFromFragment-C9yY5k8i.js
+index 513171cd3fff4bebb21baa8797b37cb6eb72e99e..7f566463aca69c7c09e5cdd2b39f36c030f00829 100644
+--- a/lib/buildTextSelectionFromFragment-C9yY5k8i.js
++++ b/lib/buildTextSelectionFromFragment-C9yY5k8i.js
+@@ -1,6 +1,7 @@
+ import { a as getValueAtPath } from "./useFieldActions-c3nQZhF9.js";
+ import { f as isTextSelectionComment, n as COMMENTS_HIGHLIGHT_HUE_KEY, p as parseCommentFieldPath, v as applyInlineCommentIdAttr } from "./useComments-DJUMzg63.js";
+-import { memo, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { isPortableTextSpan, isPortableTextTextBlock } from "@sanity/types";
+diff --git a/lib/constants-BmQSFMsM.js b/lib/constants-BmQSFMsM.js
+index de3e7618b2c6ddbbc945795997d18884f7547f58..8f32cae87235cec09f04c4ec30e7a69d8952daa0 100644
+--- a/lib/constants-BmQSFMsM.js
++++ b/lib/constants-BmQSFMsM.js
+@@ -1,4 +1,5 @@
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { isPortableTextSpan, isPortableTextTextBlock } from "@sanity/types";
+ import * as PathUtils from "@sanity/util/paths";
+diff --git a/lib/datastores-DkCuUqzn.js b/lib/datastores-DkCuUqzn.js
+index 16ed4a607c50107cd458afb70c324b71fc01733f..0bc169f16f1a8280b5d09f6cffb049511ed03c23 100644
+--- a/lib/datastores-DkCuUqzn.js
++++ b/lib/datastores-DkCuUqzn.js
+@@ -2,7 +2,8 @@ import { t as useTranslation } from "./useTranslation-Cqs6Itwv.js";
+ import { c as useWorkspace, i as useClient, n as DEFAULT_STUDIO_CLIENT_OPTIONS, o as useSource, r as versionedClient, t as DEFAULT_STUDIO_CLIENT_HEADERS } from "./studioClient-BT5Lskzx.js";
+ import { C as isNonNullable, c as getIdPair, d as getVersionId, f as idMatchesPerspective, h as isDraftId$1, l as getPublishedId$1, o as documentIdEquals, s as getDraftId, u as getVersionFromId$1, y as isVersionId$1 } from "./draftUtils-D3HJGQaW.js";
+ import { n as VARIANTS_STUDIO_CLIENT_OPTIONS, r as VARIANT_DOCUMENTS_PATH, t as variantsApiClient } from "./variantsApiClient-Bjy3xOhq.js";
+-import { useContext, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useState } = ReactDefault;
+ import { BehaviorSubject, EMPTY, NEVER, Observable, ReplaySubject, Subject, asapScheduler, asyncScheduler, catchError, combineLatest, concat, defer, distinctUntilChanged, finalize, from, fromEvent, isObservable, lastValueFrom, map, merge, of, partition, pipe, repeat, retry, scan, share, shareReplay, switchMap, tap, throwError, timer, using } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+diff --git a/lib/index.js b/lib/index.js
+index 342fea653ac1bf4ecd8f492ff58c7e08e6571c6a..ddb19950d08cea72811df55d5a17a53357c3f10a 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -52,7 +52,8 @@ import { t as SchedulesContext } from "./schedules-4mdOkMiN.js";
+ import { t as AddonDatasetProvider } from "./AddonDatasetProvider-DUOZLHQe.js";
+ import { t as UpsellPanel } from "./UpsellPanel-DR_MbO2R.js";
+ import { t as useDocumentPreviewValues } from "./useDocumentPreviewValues-BbMKxypq.js";
+-import { Children, Fragment, StrictMode, Suspense, cloneElement, createElement, isValidElement, lazy, memo, startTransition, use, useCallback, useContext, useDeferredValue, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useTransition, version } from "react";
++import ReactDefault from "react";
++const { Children, Fragment, StrictMode, Suspense, cloneElement, createElement, isValidElement, lazy, memo, startTransition, use, useCallback, useContext, useDeferredValue, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useTransition, version } = ReactDefault;
+ import { BehaviorSubject, EMPTY, NEVER, Observable, ReplaySubject, Subject, Subscription, TimeoutError, catchError, combineLatest, connect, debounceTime, defer, distinctUntilChanged, exhaustMap, filter, firstValueFrom, from, fromEvent, iif, map, merge, mergeMap, of, pipe, scan, share, shareReplay, startWith, switchMap, take, takeUntil, tap, throwError, timeout, timer, timestamp, using } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/navigation.telemetry-BkPysNRj.js b/lib/navigation.telemetry-BkPysNRj.js
+index 76de1ef8c4b1f8f7ce07a6ac001d6afddcbe3bf7..082b56b937f192b959b1e8d6a63dc68627c4f09a 100644
+--- a/lib/navigation.telemetry-BkPysNRj.js
++++ b/lib/navigation.telemetry-BkPysNRj.js
+@@ -10,7 +10,8 @@ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+ import { g as useSetPerspective, r as CreatedRelease, s as ReleaseDescriptionSet } from "./releases.telemetry-SNr7DEuI.js";
+ import { a as isErrorWithDetails, i as isReleaseLimitError, o as useReleasesUpsell, r as useReleaseOperations } from "./useBundleDocuments-lyN-dyON.js";
+ import { i as CONTENT_RELEASES_TIME_ZONE_SCOPE } from "./useScheduledDraftMenuActions-Cx6LhBNM.js";
+-import { useEffect, useId, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useId, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Button, Card, TabPanel, Text } from "@sanity/ui";
+diff --git a/lib/plugin-BmBO5hk_.js b/lib/plugin-BmBO5hk_.js
+index 691abceb29c51d9388f4087ebfe93efa85446628..893c6fa68e8a786eae97738c755cdefc5ee840f4 100644
+--- a/lib/plugin-BmBO5hk_.js
++++ b/lib/plugin-BmBO5hk_.js
+@@ -4,7 +4,8 @@ import { V as definePlugin, bt as isCardinalityOneRelease, et as useDocumentVers
+ import { s as getDraftId, u as getVersionFromId } from "./draftUtils-D3HJGQaW.js";
+ import { f as singleDocReleaseNamespace, p as singleDocReleaseUsEnglishLocaleBundle, r as ScheduleDraftDialog, s as useScheduleDraftOperations, t as useScheduledDraftMenuActions } from "./useScheduledDraftMenuActions-Cx6LhBNM.js";
+ import { i as useSingleDocReleaseEnabled, n as useSingleDocReleaseUpsell } from "./SingleDocReleaseUpsellProvider-DflYT6dj.js";
+-import { lazy, useContext, useState } from "react";
++import ReactDefault from "react";
++const { lazy, useContext, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { SingleDocReleaseContext } from "sanity/_singletons";
+diff --git a/lib/plugin-CJIYwAvR.js b/lib/plugin-CJIYwAvR.js
+index b7e0689641d30fbeb3c782cb484ccb740a9a0755..dfd04088aebbc8c2a52e73c411ff5e99c42116d0 100644
+--- a/lib/plugin-CJIYwAvR.js
++++ b/lib/plugin-CJIYwAvR.js
+@@ -1,6 +1,7 @@
+ import { V as definePlugin } from "./useActiveReleases-Df_zq_RC.js";
+ import { n as variantsUsEnglishLocaleBundle } from "./i18n-Bg4NCDZK.js";
+-import { lazy } from "react";
++import ReactDefault from "react";
++const { lazy } = ReactDefault;
+ import { route } from "sanity/router";
+ const VariantsTool = lazy(() => import("./VariantsTool-CFFIJGPX.js").then((module) => ({ default: module.VariantsTool }))), VariantsStudioNavbar = lazy(() => import("./VariantsStudioNavbar-DdhItC9j.js").then((module) => ({ default: module.VariantsStudioNavbar }))), VARIANTS_NAME = "sanity/variants", VARIANTS_INTENT = "variant", variants = definePlugin({
+ 	name: VARIANTS_NAME,
+diff --git a/lib/plugin-D0Xdg4-E.js b/lib/plugin-D0Xdg4-E.js
+index 047b8f9f7f9976f07d37bf94ea801084c197dbcb..0a218a75fa3280f91fec6fcb895c10e8aad4f65f 100644
+--- a/lib/plugin-D0Xdg4-E.js
++++ b/lib/plugin-D0Xdg4-E.js
+@@ -2,7 +2,8 @@ import { V as definePlugin } from "./useActiveReleases-Df_zq_RC.js";
+ import { n as releasesUsEnglishLocaleBundle } from "./i18n-CVs4eepm.js";
+ import "./plugin-DXqyXCpR.js";
+ import "./plugin-BmBO5hk_.js";
+-import { lazy } from "react";
++import ReactDefault from "react";
++const { lazy } = ReactDefault;
+ import { route } from "sanity/router";
+ const ReleasesStudioLayout = lazy(() => import("./ReleasesStudioLayout-CELa5Iu4.js").then((module) => ({ default: module.ReleasesStudioLayout }))), ReleasesTool = lazy(() => import("./ReleasesTool-BnrT4tmF.js").then((module) => ({ default: module.ReleasesTool }))), SCHEDULES_NAME = "sanity/schedules", SCHEDULES_TOOL_NAME = "releases", schedules = definePlugin((options) => ({
+ 	name: SCHEDULES_NAME,
+diff --git a/lib/plugin-DXqyXCpR.js b/lib/plugin-DXqyXCpR.js
+index 03204c4e125005bdde39733eba65a1e40d605376..6076c3a7e3bed2731d8a9a0af82be457741094c8 100644
+--- a/lib/plugin-DXqyXCpR.js
++++ b/lib/plugin-DXqyXCpR.js
+@@ -6,7 +6,8 @@ import { n as useCurrentUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { t as releasesLocaleNamespace } from "./i18n-CVs4eepm.js";
+ import { b as DiscardVersionDialog, g as useSetPerspective, t as AddedVersion, v as UnpublishVersionDialog } from "./releases.telemetry-SNr7DEuI.js";
+ import { r as useReleaseOperations } from "./useBundleDocuments-lyN-dyON.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { useTelemetry } from "@sanity/telemetry/react";
+diff --git a/lib/presentation.js b/lib/presentation.js
+index 2ec0d3d08b39112d044ee52aba7f31da513613fc..cd0f88c22239ccb7984c54c0a6371edc883d175b 100644
+--- a/lib/presentation.js
++++ b/lib/presentation.js
+@@ -1,7 +1,8 @@
+ import { a as EDIT_INTENT_MODE, n as DEFAULT_TOOL_ICON } from "./constants-CW-F48Fx.js";
+ import { a as presentationLocaleNamespace, i as usePresentationVariant, n as PresentationSpinner, o as presentationUsEnglishLocaleBundle, r as usePresentationTool, t as usePresentationNavigate } from "./usePresentationNavigate-Ca4fJuUG.js";
+ import { t as usePresentationParams } from "./usePresentationParams-B_1iItpx.js";
+-import { Suspense, lazy, useContext, useEffect, useLayoutEffect, useState } from "react";
++import ReactDefault from "react";
++const { Suspense, lazy, useContext, useEffect, useLayoutEffect, useState } = ReactDefault;
+ import { isObservable, map, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/releases.telemetry-SNr7DEuI.js b/lib/releases.telemetry-SNr7DEuI.js
+index 25050f5d9671c725102170a1c5e195dc1b075212..ecfdc453ddd2760b599f4c36cb9e79d4556f32d6 100644
+--- a/lib/releases.telemetry-SNr7DEuI.js
++++ b/lib/releases.telemetry-SNr7DEuI.js
+@@ -7,7 +7,8 @@ import { d as getVersionId, h as isDraftId$1, l as getPublishedId, u as getVersi
+ import { t as LoadingBlock } from "./LoadingBlock-Bk0ctvu_.js";
+ import { n as Dialog$1 } from "./MenuGroup-ydxgC1ws.js";
+ import { t as releasesLocaleNamespace } from "./i18n-CVs4eepm.js";
+-import { useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Text } from "@sanity/ui";
+diff --git a/lib/router.js b/lib/router.js
+index f60038a2657cb122e73e94db2efe1bb7389d07fe..bc284a50665425265cff0966cf932e03427b222d 100644
+--- a/lib/router.js
++++ b/lib/router.js
+@@ -1,4 +1,5 @@
+-import { useContext, useEffect, useRef } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useRef } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { RouterContext, RouterContext as RouterContext$1 } from "sanity/_singletons";
+diff --git a/lib/scheduleItem-DLo4HDHw.js b/lib/scheduleItem-DLo4HDHw.js
+index 28554f54ed9b8f717557c6fd6bb16a49db6425eb..6ac7b8feb8528e854e64e54ae09011ccda508f5d 100644
+--- a/lib/scheduleItem-DLo4HDHw.js
++++ b/lib/scheduleItem-DLo4HDHw.js
+@@ -15,7 +15,8 @@ import { r as DATE_FORMAT, t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+ import { a as useScheduleOperation, d as SCHEDULED_PUBLISHING_TIME_ZONE_SCOPE, m as SCHEDULE_FAILED_TEXT, n as useValidationState, p as SCHEDULE_ACTION_DICTIONARY, r as usePublishedId, s as getLastExecuteDate, t as EMPTY_VALIDATION_STATUS } from "./validationUtils-Cb_8XT_g.js";
+ import { n as useScheduledPublishingEnabled } from "./ScheduledPublishingEnabledProvider-BdW-k2dZ.js";
+ import { s as useValidationStatus } from "./plugin-BmBO5hk_.js";
+-import { useContext, useEffect, useId, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useId, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { combineLatest, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/schedules-4mdOkMiN.js b/lib/schedules-4mdOkMiN.js
+index a70e583d08017ee7dcc2927c01b75bd81eec4ee6..4dc7e00490e5135429eac2c30a467709b3c83d01 100644
+--- a/lib/schedules-4mdOkMiN.js
++++ b/lib/schedules-4mdOkMiN.js
+@@ -1,6 +1,7 @@
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+ import { o as sortByExecuteDate, s as getLastExecuteDate } from "./validationUtils-Cb_8XT_g.js";
+-import { useContext, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { SchedulesContext } from "sanity/_singletons";
+diff --git a/lib/searchDocumentRelease-CpSFbQA2.js b/lib/searchDocumentRelease-CpSFbQA2.js
+index 46b632b173fdecc36d84b3ab1b9acd32397bb6a2..2454ecdcea3aa503c84f9396107b528c0886139d 100644
+--- a/lib/searchDocumentRelease-CpSFbQA2.js
++++ b/lib/searchDocumentRelease-CpSFbQA2.js
+@@ -4,7 +4,8 @@ import { n as TooltipDelayGroupProvider, o as Button$1, s as Tooltip } from "./T
+ import { i as useClient, n as DEFAULT_STUDIO_CLIENT_OPTIONS } from "./studioClient-BT5Lskzx.js";
+ import { r as useUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { c as UserAvatar, s as AvatarSkeleton } from "./ReleaseAvatar-Begyy9R1.js";
+-import { Fragment, useContext, useEffect, useMemo, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, useContext, useEffect, useMemo, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { TableContext } from "sanity/_singletons";
+diff --git a/lib/structure.js b/lib/structure.js
+index 6f815d508bc36be124b6c1d92820e3ad651f7a7b..1b6957a1b467816dac0725b2a42c590921a584c8 100644
+--- a/lib/structure.js
++++ b/lib/structure.js
+@@ -5,7 +5,8 @@ import { C as PaneRouterContext, E as useDocumentPane, S as ConfirmDeleteDialogC
+ import { i as Pane, t as useStructureTool } from "./useStructureTool-CtuZ6eqW.js";
+ import { i as PaneContent } from "./constants-CbArWXc8.js";
+ import { n as ORDER_BY_IDS_PARAM_FIELD, t as PaneContainer } from "./PaneContainer-DcNQEaq-.js";
+-import { Suspense, use, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { Suspense, use, useEffect, useState } = ReactDefault;
+ import { map } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/structureTool-Bx2p_qtJ.js b/lib/structureTool-Bx2p_qtJ.js
+index 047c886a9771be2eca35fbe20e0b0b43922c904a..8fe67a691813fd00efb5ac6bf0be04e290d3326a 100644
+--- a/lib/structureTool-Bx2p_qtJ.js
++++ b/lib/structureTool-Bx2p_qtJ.js
+@@ -3,7 +3,8 @@ import { a as ErrorBoundary$1, i as MenuButton$1, n as TooltipDelayGroupProvider
+ import { i as ConfirmPopover, n as Dialog$1, r as Popover$1, t as MenuGroup$1 } from "./MenuGroup-ydxgC1ws.js";
+ import { a as usePaneLayout, i as Pane, n as PaneHeader, r as usePane, t as useStructureTool } from "./useStructureTool-CtuZ6eqW.js";
+ import { i as PaneContent, n as EMPTY_PARAMS$2, r as LOADING_PANE, t as DOCUMENT_PANEL_PORTAL_ELEMENT } from "./constants-CbArWXc8.js";
+-import { Fragment, Suspense, lazy, memo, startTransition, use, useContext, useDeferredValue, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, Suspense, lazy, memo, startTransition, use, useContext, useDeferredValue, useEffect, useId, useLayoutEffect, useRef, useState } = ReactDefault;
+ import { BehaviorSubject, EMPTY, Subject, catchError, combineLatest, concat, distinctUntilChanged, filter, firstValueFrom, from, fromEvent, isObservable, map, merge, of, startWith, switchMap, tap, timeout, timer } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/structureTool-DGSOhdej.js b/lib/structureTool-DGSOhdej.js
+index b8c148754ba9eb6d6a0aa3170d93e455815c56e0..a1fb01db98edceedf317cb6db827a20bdd75d73f 100644
+--- a/lib/structureTool-DGSOhdej.js
++++ b/lib/structureTool-DGSOhdej.js
+@@ -3,7 +3,8 @@ import { a as ErrorBoundary$1, o as Button$1 } from "./Tab-CXFVDpuN.js";
+ import { _ as isDocumentPaneNode, c as BackLink, d as assignId, h as StructureTitle, s as setActivePanes, x as PaneLayout, y as LoadingPane } from "./structureTool-Bx2p_qtJ.js";
+ import { a as usePaneLayout, i as Pane, n as PaneHeader, t as useStructureTool } from "./useStructureTool-CtuZ6eqW.js";
+ import { i as PaneContent, r as LOADING_PANE } from "./constants-CbArWXc8.js";
+-import { Fragment, Suspense, lazy, memo, useContext, useEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, Suspense, lazy, memo, useContext, useEffect, useRef, useState } = ReactDefault;
+ import { NEVER, ReplaySubject, concat, firstValueFrom, from, isObservable, map, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/studioClient-BT5Lskzx.js b/lib/studioClient-BT5Lskzx.js
+index 7f3c3b9a40544b296cc118a8c795620dedc3c2bd..9d4b6b1bcba8c2755f6cd9ebecbb78104b7fda50 100644
+--- a/lib/studioClient-BT5Lskzx.js
++++ b/lib/studioClient-BT5Lskzx.js
+@@ -1,5 +1,6 @@
+ import { t as SANITY_VERSION } from "./version-B4zeEkMG.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx } from "react/jsx-runtime";
+ import { SourceContext, WorkspaceContext } from "sanity/_singletons";
+diff --git a/lib/useActiveReleases-Df_zq_RC.js b/lib/useActiveReleases-Df_zq_RC.js
+index d20f46499f8f31dbdf3b79990d8111b8cece73f4..6e39a0d2020465a0a79039cf940bc8d84d109d20 100644
+--- a/lib/useActiveReleases-Df_zq_RC.js
++++ b/lib/useActiveReleases-Df_zq_RC.js
+@@ -7,7 +7,8 @@ import { _ as isSystemBundle, c as getIdPair, d as getVersionId, h as isDraftId,
+ import { i as VARIANT_DOCUMENT_TYPE, n as VARIANTS_STUDIO_CLIENT_OPTIONS, r as VARIANT_DOCUMENTS_PATH } from "./variantsApiClient-Bjy3xOhq.js";
+ import { i as createHookFromObservableFactory, n as useCurrentUser } from "./LoadingBlock-Bk0ctvu_.js";
+ import { r as isAgentBundleName } from "./createAgentBundlesStore-BJwwD0vJ.js";
+-import { Fragment, Suspense, isValidElement, memo, useContext, useEffect, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, Suspense, isValidElement, memo, useContext, useEffect, useState } = ReactDefault;
+ import { BehaviorSubject, EMPTY, Observable, ReplaySubject, Subject, bufferTime, catchError, combineLatest, concat, concatWith, count, filter, finalize, from, fromEvent, iif, map, merge, of, pipe, scan, share, shareReplay, startWith, switchMap, tap, timer } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/useAddonDataset-BvCgByG6.js b/lib/useAddonDataset-BvCgByG6.js
+index 0c1c2fd904394fe63e873c3dd86d4428d3fd49fb..ad7e969834f89f1c695860df831595c1bffb553b 100644
+--- a/lib/useAddonDataset-BvCgByG6.js
++++ b/lib/useAddonDataset-BvCgByG6.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { AddonDatasetContext } from "sanity/_singletons";
+ /**
+ * @beta
+diff --git a/lib/useBundleDocuments-lyN-dyON.js b/lib/useBundleDocuments-lyN-dyON.js
+index 4a249c92898f36cc33bfc1a41f30e556ed59a39a..ff5410fc4aab55fb83af8f41c504fb1b9550d6c8 100644
+--- a/lib/useBundleDocuments-lyN-dyON.js
++++ b/lib/useBundleDocuments-lyN-dyON.js
+@@ -1,7 +1,8 @@
+ import { Ot as RELEASES_STUDIO_CLIENT_OPTIONS, R as validateDocumentWithReferences, U as getReleaseIdFromReleaseDocumentId, Zt as useSchema, r as useDocumentPreviewStore } from "./datastores-DkCuUqzn.js";
+ import { i as useClient, o as useSource } from "./studioClient-BT5Lskzx.js";
+ import { d as getVersionId, l as getPublishedId, s as getDraftId, u as getVersionFromId } from "./draftUtils-D3HJGQaW.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { combineLatest, from, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { ReleasesUpsellContext } from "sanity/_singletons";
+diff --git a/lib/useComments-DJUMzg63.js b/lib/useComments-DJUMzg63.js
+index a0a6d7abe6159d14d6363bade73dfda5c6bcb3ce..9b1e9503ad38a7099a7a0937e0477938dbc75f30 100644
+--- a/lib/useComments-DJUMzg63.js
++++ b/lib/useComments-DJUMzg63.js
+@@ -4,7 +4,8 @@ import { n as TooltipDelayGroupProvider, o as Button$1, s as Tooltip } from "./T
+ import { n as useCurrentUser, r as useUser, t as LoadingBlock } from "./LoadingBlock-Bk0ctvu_.js";
+ import { n as Dialog$1, r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { t as CommandList } from "./CommandList-DkTFBzFx.js";
+-import { useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { CommentInputContext, CommentsContext } from "sanity/_singletons";
+diff --git a/lib/useCommentsEnabled-B44hWtng.js b/lib/useCommentsEnabled-B44hWtng.js
+index dc2eb532540bb395f3f7fb574f923a11803af3b0..c7a1c64f54c2a3e3886c077d0958bf38ab63879f 100644
+--- a/lib/useCommentsEnabled-B44hWtng.js
++++ b/lib/useCommentsEnabled-B44hWtng.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { CommentsEnabledContextV2 } from "sanity/_singletons";
+ /**
+ * @beta
+diff --git a/lib/useCommentsEnabled-BPc3788v.js b/lib/useCommentsEnabled-BPc3788v.js
+index e1b3dc0d981ce7fa53147d62220f19ba367026e2..d0937d18d77904dbda6379ee58d87f41237dc1a5 100644
+--- a/lib/useCommentsEnabled-BPc3788v.js
++++ b/lib/useCommentsEnabled-BPc3788v.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { CommentsEnabledContext } from "sanity/_singletons";
+ /**
+ * @beta
+diff --git a/lib/useCommentsSelectedPath-D5HXM3NF.js b/lib/useCommentsSelectedPath-D5HXM3NF.js
+index ae638eab66540ab56cdeb8c0f906850613f8ac91..e1e8a9d3f39a9ee2f5835a54a23949afc59cae68 100644
+--- a/lib/useCommentsSelectedPath-D5HXM3NF.js
++++ b/lib/useCommentsSelectedPath-D5HXM3NF.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { CommentsSelectedPathContext } from "sanity/_singletons";
+ /**
+ * @internal
+diff --git a/lib/useCommentsTelemetry-fIeS3AXN.js b/lib/useCommentsTelemetry-fIeS3AXN.js
+index b86dbfb7c66805c23548a258d3423b3ac498b415..c19e5829d4acfd1e71ad3af43873971956b3cf4e 100644
+--- a/lib/useCommentsTelemetry-fIeS3AXN.js
++++ b/lib/useCommentsTelemetry-fIeS3AXN.js
+@@ -4,7 +4,8 @@ import { t as Translate } from "./Translate-YUHPpk6j.js";
+ import { t as LoadingBlock } from "./LoadingBlock-Bk0ctvu_.js";
+ import { _ as applyCommentsGroupAttr, b as commentsLocaleNamespace, d as hasCommentMessageValue, o as CommentInput } from "./useComments-DJUMzg63.js";
+ import { n as ThreadCard, t as CommentsListItem } from "./CommentsListItem-D8gZS5zG.js";
+-import { Fragment, memo, useRef, useState } from "react";
++import ReactDefault from "react";
++const { Fragment, memo, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { BoundaryElementProvider, Button } from "@sanity/ui";
+diff --git a/lib/useCommentsUpsell-a8ecO894.js b/lib/useCommentsUpsell-a8ecO894.js
+index dffe08c3451c77017d0d9fbbb21e036272baf7e3..e79c01e4fc2bd3ab6909088a01eafcf9adcc0a35 100644
+--- a/lib/useCommentsUpsell-a8ecO894.js
++++ b/lib/useCommentsUpsell-a8ecO894.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { CommentsUpsellContext } from "sanity/_singletons";
+ function useCommentsUpsell() {
+diff --git a/lib/useCommentsUpsell-dtlhkiSW.js b/lib/useCommentsUpsell-dtlhkiSW.js
+index b266d92024360045a58e47cfeff3a1ff8b10c733..8efc3a297282e1b8843e8a15cc394cd5a6afe024 100644
+--- a/lib/useCommentsUpsell-dtlhkiSW.js
++++ b/lib/useCommentsUpsell-dtlhkiSW.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { CommentsSelectedPathContextV2, CommentsUpsellContextV2 } from "sanity/_singletons";
+ /**
+diff --git a/lib/useFieldActions-c3nQZhF9.js b/lib/useFieldActions-c3nQZhF9.js
+index 5b6f99d730abd192959c1817cbaef59e681853ff..73f9c0e4c71673e1cf7a6989f8c1499b8c807173 100644
+--- a/lib/useFieldActions-c3nQZhF9.js
++++ b/lib/useFieldActions-c3nQZhF9.js
+@@ -1,5 +1,6 @@
+ import { on as isRecord } from "./datastores-DkCuUqzn.js";
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { FieldActionsContext } from "sanity/_singletons";
+ import { isIndexSegment, isIndexTuple, isKeySegment, isKeyedObject } from "@sanity/types";
+ const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g, reKeySegment = /_key\s*==\s*['"](.*)['"]/;
+diff --git a/lib/useLocale-ChRJXddd.js b/lib/useLocale-ChRJXddd.js
+index 1c36f9735416e775a4e486e3e2505d63484288bf..ea79f0913d4f1e5ace1936196128edaed4cc8c5b 100644
+--- a/lib/useLocale-ChRJXddd.js
++++ b/lib/useLocale-ChRJXddd.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { LocaleContext } from "sanity/_singletons";
+ /**
+ * Returns the currently active locale
+diff --git a/lib/usePresentationNavigate-Ca4fJuUG.js b/lib/usePresentationNavigate-Ca4fJuUG.js
+index 6ee1e70641e3ed2dda24eb26bc5e5805ad5abf8b..0e78b3759714cc2d90be5d4b5a39ef620f39da6f 100644
+--- a/lib/usePresentationNavigate-Ca4fJuUG.js
++++ b/lib/usePresentationNavigate-Ca4fJuUG.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx } from "react/jsx-runtime";
+ import { PresentationContext, PresentationNavigateContext } from "sanity/_singletons";
+diff --git a/lib/usePresentationParams-B_1iItpx.js b/lib/usePresentationParams-B_1iItpx.js
+index 560a45b600996feb78a494e889b3188ca1401eb8..2d133dff49f0bf268286c470fbd3039cf9fd7ba6 100644
+--- a/lib/usePresentationParams-B_1iItpx.js
++++ b/lib/usePresentationParams-B_1iItpx.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { PresentationParamsContext } from "sanity/_singletons";
+ /** @public */
+ function usePresentationParams(t0) {
+diff --git a/lib/useScheduledDraftMenuActions-Cx6LhBNM.js b/lib/useScheduledDraftMenuActions-Cx6LhBNM.js
+index d3b4db56d690b71b307fda09b1c03a3893a61f85..28d7f6d3b0450bf567588c60d7403dacded9fde1 100644
+--- a/lib/useScheduledDraftMenuActions-Cx6LhBNM.js
++++ b/lib/useScheduledDraftMenuActions-Cx6LhBNM.js
+@@ -9,7 +9,8 @@ import { n as Dialog$1 } from "./MenuGroup-ydxgC1ws.js";
+ import { a as MONTH_PICKER_VARIANT, f as isDraftVersion, h as isVariantVersion, p as isPublishedVersion, r as DateTimeInput, t as getCalendarLabels } from "./utils-BAFnqK5R.js";
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+ import { r as useReleaseOperations, t as getBundleDocumentsObservable } from "./useBundleDocuments-lyN-dyON.js";
+-import { useState } from "react";
++import ReactDefault from "react";
++const { useState } = ReactDefault;
+ import { EMPTY, of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/useStructureTool-CtuZ6eqW.js b/lib/useStructureTool-CtuZ6eqW.js
+index 2df0a85a4ed728833e10ef2b2d772cc77884c752..58debb2d8f5f6bf07e318c14dfded6df18875456 100644
+--- a/lib/useStructureTool-CtuZ6eqW.js
++++ b/lib/useStructureTool-CtuZ6eqW.js
+@@ -1,4 +1,5 @@
+-import { useContext, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useContext, useImperativeHandle, useLayoutEffect, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { PaneContext, PaneLayoutContext, StructureToolContext } from "sanity/_singletons";
+diff --git a/lib/useStudioUrl-CW1Sc8vY.js b/lib/useStudioUrl-CW1Sc8vY.js
+index 94bff2a7600e202c9661a0a31c683d59ac0fdd5e..33b95c9e40937ce41cfb797fd0033e57683e2fcd 100644
+--- a/lib/useStudioUrl-CW1Sc8vY.js
++++ b/lib/useStudioUrl-CW1Sc8vY.js
+@@ -3,7 +3,8 @@ import { c as useWorkspace, i as useClient, n as DEFAULT_STUDIO_CLIENT_OPTIONS,
+ import { jt as useActiveWorkspace } from "./useActiveReleases-Df_zq_RC.js";
+ import { C as isNonNullable } from "./draftUtils-D3HJGQaW.js";
+ import { T as useProjectOrganizationId, c as useStudioAppIdStore, w as useRenderingContext } from "./SearchProvider-mOWPUR3B.js";
+-import { memo, useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { memo, useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { of } from "rxjs";
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+diff --git a/lib/useTasks-I977dBmi.js b/lib/useTasks-I977dBmi.js
+index 750b87ca38db5c0998f10d696b3a81d5870000b6..1caf89abb06e44890334c022c10e537cbe00720d 100644
+--- a/lib/useTasks-I977dBmi.js
++++ b/lib/useTasks-I977dBmi.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { TasksContext } from "sanity/_singletons";
+ /**
+diff --git a/lib/useTasksEnabled-DBNZp6wF.js b/lib/useTasksEnabled-DBNZp6wF.js
+index b4ed0afc6785bddf11061bb9e71ab9b529ddb7d8..bb191d1e891c60953b671e002ffc364a7807acfc 100644
+--- a/lib/useTasksEnabled-DBNZp6wF.js
++++ b/lib/useTasksEnabled-DBNZp6wF.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { TasksEnabledContext } from "sanity/_singletons";
+ /**
+ * @internal
+diff --git a/lib/useTasksNavigation-DVWT3Woz.js b/lib/useTasksNavigation-DVWT3Woz.js
+index ee00dd1a2a2edb6177ade6492b9c14662a4e131d..0389d5edfd74af834ff170d69d5a6d7867fb4b18 100644
+--- a/lib/useTasksNavigation-DVWT3Woz.js
++++ b/lib/useTasksNavigation-DVWT3Woz.js
+@@ -1,4 +1,5 @@
+-import { useContext } from "react";
++import ReactDefault from "react";
++const { useContext } = ReactDefault;
+ import { TasksNavigationContext } from "sanity/_singletons";
+ /**
+ * The locale namespace for the task tool
+diff --git a/lib/useTimeZone-BfjtwgW_.js b/lib/useTimeZone-BfjtwgW_.js
+index 259bb4d8e8198ea602754d0d205e311dec9757e4..0d59246a413d8d89fffdb7fef1e6ddf88d56e0a4 100644
+--- a/lib/useTimeZone-BfjtwgW_.js
++++ b/lib/useTimeZone-BfjtwgW_.js
+@@ -1,5 +1,6 @@
+ import { s as useKeyValueStore } from "./datastores-DkCuUqzn.js";
+-import { useEffect, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { Inline, Stack, Text } from "@sanity/ui";
+diff --git a/lib/userComponent-CQD62k-R.js b/lib/userComponent-CQD62k-R.js
+index 56a19dcbe629bd7508683a083c3607d100647b3a..fae29fce4e5094e1fb5d58fee13899e6c1bfa7b1 100644
+--- a/lib/userComponent-CQD62k-R.js
++++ b/lib/userComponent-CQD62k-R.js
+@@ -1,7 +1,8 @@
+ import { o as Button } from "./Tab-CXFVDpuN.js";
+ import { c as BackLink, l as PaneHeaderActions } from "./structureTool-Bx2p_qtJ.js";
+ import { i as Pane, n as PaneHeader, r as usePane, t as useStructureTool } from "./useStructureTool-CtuZ6eqW.js";
+-import { isValidElement, useState } from "react";
++import ReactDefault from "react";
++const { isValidElement, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { styled } from "styled-components";
+diff --git a/lib/utils-BAFnqK5R.js b/lib/utils-BAFnqK5R.js
+index d951ca1c02c7e411cbf513d4636950547a6eb065..3584035ddf9b7f5985b52f498c6407e78e66571d 100644
+--- a/lib/utils-BAFnqK5R.js
++++ b/lib/utils-BAFnqK5R.js
+@@ -6,7 +6,8 @@ import { t as useCurrentLocale } from "./useLocale-ChRJXddd.js";
+ import { r as isAgentBundleName } from "./createAgentBundlesStore-BJwwD0vJ.js";
+ import { n as Dialog$1, r as Popover } from "./MenuGroup-ydxgC1ws.js";
+ import { t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+-import { useEffect, useImperativeHandle, useRef, useState } from "react";
++import ReactDefault from "react";
++const { useEffect, useImperativeHandle, useRef, useState } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
+ import { Card, Inline, LayerProvider, Select, Stack, Text, TextInput, useClickOutsideEvent, useLayer } from "@sanity/ui";
+diff --git a/lib/validationUtils-Cb_8XT_g.js b/lib/validationUtils-Cb_8XT_g.js
+index d98a5976cb406c895e7a46fcb3edb1411f284eb3..d5db374e663178edbc5c186d0e7394600fea4803 100644
+--- a/lib/validationUtils-Cb_8XT_g.js
++++ b/lib/validationUtils-Cb_8XT_g.js
+@@ -1,7 +1,8 @@
+ import { i as useClient } from "./studioClient-BT5Lskzx.js";
+ import { n as debugWithName, t as useTimeZone } from "./useTimeZone-BfjtwgW_.js";
+ import { n as useScheduledPublishingEnabled } from "./ScheduledPublishingEnabledProvider-BdW-k2dZ.js";
+-import { useEffect } from "react";
++import ReactDefault from "react";
++const { useEffect } = ReactDefault;
+ import { c } from "react/compiler-runtime";
+ import { jsx, jsxs } from "react/jsx-runtime";
+ import { isValidationErrorMarker, isValidationWarningMarker } from "@sanity/types";

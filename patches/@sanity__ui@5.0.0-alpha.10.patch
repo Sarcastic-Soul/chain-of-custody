@@ -1,0 +1,15 @@
+diff --git a/dist/index.js b/dist/index.js
+index 0ec489223278e1492a4dce1e5b8f406dc34f4873..9c0c3a63c736a878970270bb24ba49c70cc2e939 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -2,7 +2,9 @@
+ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+ import { c } from "react/compiler-runtime";
+ import clsx from "clsx";
+-import { isValidElement, useRef, useEffect, lazy, Suspense, useId, Children, useSyncExternalStore, useState, cloneElement, Activity } from "react";
++import ReactDefault from "react";
++const { isValidElement, useRef, useEffect, lazy, Suspense, useId, Children, useSyncExternalStore, useState, cloneElement } = ReactDefault;
++const Activity = ReactDefault.Activity;
+ import { SpinnerIcon } from "@sanity/icons/Spinner";
+ import { CheckmarkIcon } from "@sanity/icons/Checkmark";
+ import { RemoveIcon } from "@sanity/icons/Remove";

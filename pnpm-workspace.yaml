@@ -7,3 +7,7 @@ minimumReleaseAgeExclude:
   - '@ai-sdk/mcp@2.0.57'
   - '@ai-sdk/provider-utils@5.0.47'
   - ai@7.0.113
+patchedDependencies:
+  '@sanity/ui@4.2.3': patches/@sanity__ui@4.2.3.patch
+  '@sanity/ui@5.0.0-alpha.10': patches/@sanity__ui@5.0.0-alpha.10.patch
+  sanity@6.16.0: patches/sanity@6.16.0.patch
