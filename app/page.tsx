@@ -28,7 +28,7 @@ import { DEFAULT_GEMINI_MODEL_ID, GEMINI_MODEL_IDS, type AskResult, type GeminiM
 const MODEL_LABELS: Record<GeminiModelId, string> = {
   'gemini-3.8-flash': 'Gemini 3.8 Flash',
   'gemini-3.7-flash': 'Gemini 3.7 Flash',
-  'gemini-3.6-flash': 'Gemini 3.6 Flash (fastest)',
+  'gemini-3.6-flash': 'Gemini 3.6 Flash',
   'gemini-3.5-flash': 'Gemini 3.5 Flash',
 }
 
@@ -148,7 +148,7 @@ export default function Home() {
     <div className="flex h-dvh flex-col bg-background">
       <SiteHeader />
 
-      <div className="mx-auto grid min-h-0 w-full max-w-6xl flex-1 grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1fr_360px]">
+      <div className="mx-auto grid min-h-0 w-full max-w-[110rem] flex-1 grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1fr_440px]">
         <div className="flex min-h-0 flex-col">
           <div className="min-h-0 flex-1 overflow-y-auto pr-1">
             {turns.length === 0 ? (
@@ -223,20 +223,6 @@ export default function Home() {
           </div>
 
           <div className="shrink-0 border-t border-border/60 bg-background pt-3">
-            <div className="mb-2 flex items-center justify-end">
-              <Select value={modelId} onValueChange={(value) => setModelId(value as GeminiModelId)}>
-                <SelectTrigger size="sm" className="h-7 w-auto gap-1.5 border-none bg-transparent px-2 text-xs text-muted-foreground shadow-none hover:bg-accent">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent align="end">
-                  {GEMINI_MODEL_IDS.map((id) => (
-                    <SelectItem key={id} value={id}>
-                      {MODEL_LABELS[id]}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
             {turns.length > 0 && (
               <div className="mb-2 flex flex-wrap gap-1.5">
                 {EXAMPLE_QUESTIONS.map((q) => (
@@ -257,7 +243,7 @@ export default function Home() {
                 e.preventDefault()
                 submitQuestion(question)
               }}
-              className="flex items-end gap-2 rounded-2xl border border-border/60 bg-card p-2"
+              className="flex flex-col gap-1 rounded-2xl border border-border/60 bg-card p-2"
             >
               <Textarea
                 value={question}
@@ -265,11 +251,25 @@ export default function Home() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask a question... (Enter to send, Shift+Enter for a new line)"
                 rows={1}
-                className="max-h-40 min-h-9 resize-none border-none bg-transparent px-2 py-1.5 text-[15px] shadow-none focus-visible:ring-0 dark:bg-transparent"
+                className="max-h-64 min-h-9 resize-none border-none bg-transparent px-2 py-1.5 text-[15px] shadow-none focus-visible:ring-0 dark:bg-transparent"
               />
-              <Button type="submit" size="icon" disabled={loading || !question.trim()} className="shrink-0">
-                {loading ? <Loader2 className="size-4 animate-spin" /> : <ArrowUp className="size-4" />}
-              </Button>
+              <div className="flex items-center justify-between gap-2">
+                <Select value={modelId} onValueChange={(value) => setModelId(value as GeminiModelId)}>
+                  <SelectTrigger size="sm" className="h-7 w-auto gap-1.5 border-none bg-transparent px-2 text-xs text-muted-foreground shadow-none hover:bg-accent">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent align="start">
+                    {GEMINI_MODEL_IDS.map((id) => (
+                      <SelectItem key={id} value={id}>
+                        {MODEL_LABELS[id]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Button type="submit" size="icon" disabled={loading || !question.trim()} className="shrink-0">
+                  {loading ? <Loader2 className="size-4 animate-spin" /> : <ArrowUp className="size-4" />}
+                </Button>
+              </div>
             </form>
           </div>
         </div>
