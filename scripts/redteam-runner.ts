@@ -1,6 +1,13 @@
 import 'dotenv/config'
 import { askAgent } from '@/lib/agent'
+import { isGeminiModelId } from '@/lib/agent/geminiModel'
+import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
 import { readClient, writeClient } from '@/lib/sanity/client'
+
+const modelId =
+  process.env.REDTEAM_MODEL && isGeminiModelId(process.env.REDTEAM_MODEL)
+    ? process.env.REDTEAM_MODEL
+    : DEFAULT_GEMINI_MODEL_ID
 
 interface RedTeamCase {
   _id: string
@@ -18,7 +25,7 @@ interface CaseResult {
 }
 
 const CONCURRENCY = 1
-const DELAY_BETWEEN_CASES_MS = 0
+const DELAY_BETWEEN_CASES_MS = 5000
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -30,7 +37,7 @@ async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
 
   let result
   try {
-    result = await askAgent(redTeamCase.probeQuestion)
+    result = await askAgent(redTeamCase.probeQuestion, modelId)
   } catch (err) {
     console.error(
       `[${new Date().toISOString()}] FAIL  ${redTeamCase.caseId} after ${Date.now() - startedAt}ms:`,
