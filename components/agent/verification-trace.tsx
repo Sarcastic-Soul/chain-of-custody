@@ -140,6 +140,10 @@ export function VerificationTrace({ result }: { result: AskResult | null }) {
                 <span className="text-sm font-medium">Verdict</span>
                 <VerdictBadge status={result.status} />
               </div>
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-medium">Model</span>
+                <span className="text-sm text-muted-foreground">{result.modelId}</span>
+              </div>
               <p className="truncate text-xs text-muted-foreground">
                 Written to Sanity as claim <code className="text-[11px]">{result.claimId}</code>
               </p>

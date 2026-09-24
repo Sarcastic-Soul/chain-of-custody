@@ -3,9 +3,9 @@ import { generateText, hasToolCall, stepCountIs, tool, type ToolSet } from 'ai'
 import { z } from 'zod'
 import { readClient, writeClient } from '@/lib/sanity/client'
 import { getMcpTools } from './mcpClient'
-import { geminiModel } from './geminiModel'
+import { getGeminiModel } from './geminiModel'
 import { verifyExactSubstring } from './verify'
-import type { AskResult, Citation, ClaimStatus, Stance } from './types'
+import { DEFAULT_GEMINI_MODEL_ID, type AskResult, type Citation, type ClaimStatus, type GeminiModelId, type Stance } from './types'
 
 const MAX_CHAIN_DEPTH = 8
 
@@ -74,13 +74,13 @@ const proposeCandidates = tool({
   execute: async ({ candidates }) => ({ received: candidates.length }),
 })
 
-async function proposeCandidatesForQuestion(question: string): Promise<Candidate[]> {
+async function proposeCandidatesForQuestion(question: string, modelId: GeminiModelId): Promise<Candidate[]> {
   const mcpTools = await getMcpTools()
   const { groq_query } = mcpTools
   const tools: ToolSet = groq_query ? { groq_query, proposeCandidates } : { proposeCandidates }
 
   const result = await generateText({
-    model: geminiModel,
+    model: getGeminiModel(modelId),
     system: SYSTEM_PROMPT,
     prompt: question,
     tools,
@@ -259,8 +259,8 @@ async function writeBack(question: string, status: ClaimStatus, citations: Citat
   return claimId
 }
 
-export async function askAgent(question: string): Promise<AskResult> {
-  const candidates = await proposeCandidatesForQuestion(question)
+export async function askAgent(question: string, modelId: GeminiModelId = DEFAULT_GEMINI_MODEL_ID): Promise<AskResult> {
+  const candidates = await proposeCandidatesForQuestion(question, modelId)
   const { verified, docsById } = await verifyCandidates(candidates)
   const { citations: groundedCitations, supersededNotice } = await resolveSupersedes(verified, docsById)
 
@@ -291,6 +291,7 @@ export async function askAgent(question: string): Promise<AskResult> {
     citations,
     supersededNotice,
     claimId,
+    modelId,
     trace: {
       candidatesProposed: candidates.length,
       candidatesRejected: candidates.length - verified.length,

@@ -1,6 +1,11 @@
 export type Stance = 'supports' | 'contradicts'
 export type ClaimStatus = 'grounded' | 'contradicted' | 'ungrounded'
 
+/** Gemini models offered in the UI, newest first. Kept here (not geminiModel.ts) so the client bundle never pulls in the Google SDK. */
+export const GEMINI_MODEL_IDS = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash'] as const
+export type GeminiModelId = (typeof GEMINI_MODEL_IDS)[number]
+export const DEFAULT_GEMINI_MODEL_ID: GeminiModelId = 'gemini-3.6-flash'
+
 export interface Citation {
   sourceDocumentId: string
   sourceTitle: string
@@ -20,6 +25,8 @@ export interface AskResult {
   supersededNotice?: string
   /** id of the `claim` document written for this question. */
   claimId: string
+  /** Gemini model used to answer this question. */
+  modelId: GeminiModelId
   /** Verification pipeline counts, for surfacing the grounding process in the UI. */
   trace: {
     /** Quotes the model proposed from retrieved source documents. */
@@ -30,11 +37,3 @@ export interface AskResult {
     citationsKept: number
   }
 }
-
-/**
- * Core agent entry point (architecture.md agent flow):
- * query the Knowledge Base via Sanity Context MCP, extract a candidate quote,
- * verify it as an exact substring of sourceDocument.body in code, check supersedes,
- * check for opposing-stance contradictions, and write claim/quoteEvidence back via writeClient.
- */
-export { askAgent } from './answer'

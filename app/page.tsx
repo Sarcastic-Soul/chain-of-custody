@@ -16,7 +16,21 @@ import { VerdictBadge } from '@/components/agent/verdict-badge'
 import { VerificationTrace } from '@/components/agent/verification-trace'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import type { AskResult } from '@/lib/agent/types'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { DEFAULT_GEMINI_MODEL_ID, GEMINI_MODEL_IDS, type AskResult, type GeminiModelId } from '@/lib/agent/types'
+
+const MODEL_LABELS: Record<GeminiModelId, string> = {
+  'gemini-3.8-flash': 'Gemini 3.8 Flash',
+  'gemini-3.7-flash': 'Gemini 3.7 Flash',
+  'gemini-3.6-flash': 'Gemini 3.6 Flash (fastest)',
+  'gemini-3.5-flash': 'Gemini 3.5 Flash',
+}
 
 const EXAMPLE_QUESTIONS = [
   'Did Hindenburg accuse Super Micro of accounting manipulation?',
@@ -84,6 +98,7 @@ function AnswerBubble({ result }: { result: AskResult }) {
 
 export default function Home() {
   const [question, setQuestion] = useState('')
+  const [modelId, setModelId] = useState<GeminiModelId>(DEFAULT_GEMINI_MODEL_ID)
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const loading = turns.some((t) => t.status === 'pending')
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -106,7 +121,7 @@ export default function Home() {
       const res = await fetch('/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: trimmed }),
+        body: JSON.stringify({ question: trimmed, model: modelId }),
       })
 
       const body = await res.json().catch(() => null)
@@ -208,6 +223,20 @@ export default function Home() {
           </div>
 
           <div className="shrink-0 border-t border-border/60 bg-background pt-3">
+            <div className="mb-2 flex items-center justify-end">
+              <Select value={modelId} onValueChange={(value) => setModelId(value as GeminiModelId)}>
+                <SelectTrigger size="sm" className="h-7 w-auto gap-1.5 border-none bg-transparent px-2 text-xs text-muted-foreground shadow-none hover:bg-accent">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent align="end">
+                  {GEMINI_MODEL_IDS.map((id) => (
+                    <SelectItem key={id} value={id}>
+                      {MODEL_LABELS[id]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             {turns.length > 0 && (
               <div className="mb-2 flex flex-wrap gap-1.5">
                 {EXAMPLE_QUESTIONS.map((q) => (
