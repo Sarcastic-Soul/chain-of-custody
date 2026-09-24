@@ -1,0 +1,37 @@
+{
+  "name": "chain-of-custody",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "seed": "DOTENV_CONFIG_PATH=.env.local tsx scripts/seed.ts",
+    "seed:redteam": "DOTENV_CONFIG_PATH=.env.local tsx scripts/seed-redteam.ts",
+    "redteam": "DOTENV_CONFIG_PATH=.env.local tsx scripts/redteam-runner.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/groq": "^3.0.0",
+    "@ai-sdk/mcp": "^1.0.0",
+    "@sanity/client": "^8.7.0",
+    "@sanity/vision": "^6.16.0",
+    "ai": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "next": "^15.5.0",
+    "next-sanity": "^13.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^6.16.0",
+    "styled-components": "^6.5.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
