@@ -236,7 +236,7 @@ export default function Home() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask a question... (Enter to send, Shift+Enter for a new line)"
                 rows={1}
-                className="max-h-40 min-h-9 resize-none border-none bg-transparent px-2 py-1.5 text-[15px] shadow-none focus-visible:ring-0"
+                className="max-h-40 min-h-9 resize-none border-none bg-transparent px-2 py-1.5 text-[15px] shadow-none focus-visible:ring-0 dark:bg-transparent"
               />
               <Button type="submit" size="icon" disabled={loading || !question.trim()} className="shrink-0">
                 {loading ? <Loader2 className="size-4 animate-spin" /> : <ArrowUp className="size-4" />}
