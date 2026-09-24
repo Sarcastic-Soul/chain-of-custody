@@ -20,6 +20,15 @@ export interface AskResult {
   supersededNotice?: string
   /** id of the `claim` document written for this question. */
   claimId: string
+  /** Verification pipeline counts, for surfacing the grounding process in the UI. */
+  trace: {
+    /** Quotes the model proposed from retrieved source documents. */
+    candidatesProposed: number
+    /** Proposed quotes discarded for not being an exact substring of the cited source document. */
+    candidatesRejected: number
+    /** Verified quotes kept after the supersedes chain resolution. */
+    citationsKept: number
+  }
 }
 
 /**

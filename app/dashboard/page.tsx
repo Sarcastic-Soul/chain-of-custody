@@ -1,5 +1,8 @@
-import type { CSSProperties } from 'react'
+import { GitCompareArrows, ShieldCheck, Swords } from 'lucide-react'
 import { readClient } from '@/lib/sanity/client'
+import { SiteHeader } from '@/components/site-header'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 export const revalidate = 60
 
@@ -25,32 +28,14 @@ function formatPercent(value: number | undefined): string {
 }
 
 function formatDate(value: string): string {
-  return new Date(value).toLocaleString('en-US', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  })
+  return new Date(value).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
 }
 
-const tileStyle: CSSProperties = {
-  background: '#14171c',
-  border: '1px solid #23272e',
-  borderRadius: 8,
-  padding: '24px 20px',
-  flex: '1 1 200px',
-}
-
-const tileLabelStyle: CSSProperties = {
-  fontSize: 13,
-  color: '#9aa0a8',
-  marginBottom: 8,
-  textTransform: 'uppercase',
-  letterSpacing: 0.5,
-}
-
-const tileValueStyle: CSSProperties = {
-  fontSize: 40,
-  fontWeight: 600,
-}
+const TILES = [
+  { key: 'groundingRate', label: 'Grounding rate', icon: ShieldCheck },
+  { key: 'contradictionSurfaceRate', label: 'Contradiction surface rate', icon: GitCompareArrows },
+  { key: 'redTeamPassRate', label: 'Red-team pass rate', icon: Swords },
+] as const
 
 export default async function DashboardPage() {
   const [snapshot, runs] = await Promise.all([
@@ -59,56 +44,71 @@ export default async function DashboardPage() {
   ])
 
   return (
-    <main style={{ maxWidth: 900, margin: '0 auto', padding: '48px 16px' }}>
-      <h1 style={{ fontSize: 32, marginBottom: 8 }}>Trust Dashboard</h1>
-      <p style={{ color: '#9aa0a8', marginBottom: 40 }}>
-        Live numbers on how often this agent grounds its claims, surfaces contradictions, and survives the red-team suite.
-      </p>
+    <div className="min-h-dvh bg-background">
+      <SiteHeader />
 
-      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 48 }}>
-        <div style={tileStyle}>
-          <div style={tileLabelStyle}>Grounding rate</div>
-          <div style={tileValueStyle}>{formatPercent(snapshot?.groundingRate)}</div>
-        </div>
-        <div style={tileStyle}>
-          <div style={tileLabelStyle}>Contradiction surface rate</div>
-          <div style={tileValueStyle}>{formatPercent(snapshot?.contradictionSurfaceRate)}</div>
-        </div>
-        <div style={tileStyle}>
-          <div style={tileLabelStyle}>Red-team pass rate</div>
-          <div style={tileValueStyle}>{formatPercent(snapshot?.redTeamPassRate)}</div>
-        </div>
-      </div>
-
-      {snapshot?.computedAt && (
-        <p style={{ color: '#6b7078', fontSize: 13, marginTop: -32, marginBottom: 40 }}>
-          Last computed {formatDate(snapshot.computedAt)}
+      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <h1 className="text-3xl font-semibold tracking-tight">Trust Dashboard</h1>
+        <p className="mt-2 max-w-2xl text-muted-foreground">
+          Live numbers on how often this agent grounds its claims, surfaces contradictions instead of
+          resolving them silently, and survives a repeatable red-team suite of poisoned and adversarial
+          source documents.
         </p>
-      )}
 
-      <h2 style={{ fontSize: 22, marginBottom: 16 }}>Recent red-team runs</h2>
-      {runs.length === 0 ? (
-        <p style={{ color: '#9aa0a8' }}>no data yet</p>
-      ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #23272e', textAlign: 'left' }}>
-              <th style={{ padding: '8px 12px', color: '#9aa0a8', fontWeight: 500 }}>Suite version</th>
-              <th style={{ padding: '8px 12px', color: '#9aa0a8', fontWeight: 500 }}>Run at</th>
-              <th style={{ padding: '8px 12px', color: '#9aa0a8', fontWeight: 500 }}>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {runs.map((run, i) => (
-              <tr key={`${run.suiteVersion}-${run.runAt}-${i}`} style={{ borderBottom: '1px solid #23272e' }}>
-                <td style={{ padding: '8px 12px' }}>{run.suiteVersion}</td>
-                <td style={{ padding: '8px 12px' }}>{formatDate(run.runAt)}</td>
-                <td style={{ padding: '8px 12px' }}>{formatPercent(run.aggregateScore)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </main>
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {TILES.map((tile) => (
+            <Card key={tile.key}>
+              <CardContent>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <tile.icon className="size-4" />
+                  {tile.label}
+                </div>
+                <div className="mt-2 text-4xl font-semibold tracking-tight">
+                  {formatPercent(snapshot?.[tile.key])}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {snapshot?.computedAt && (
+          <p className="mt-3 text-xs text-muted-foreground">Last computed {formatDate(snapshot.computedAt)}</p>
+        )}
+
+        <Card className="mt-10">
+          <CardHeader>
+            <CardTitle>Recent red-team runs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {runs.length === 0 ? (
+              <p className="text-sm text-muted-foreground">no data yet</p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border/60 text-left text-muted-foreground">
+                      <th className="px-3 py-2 font-medium">Suite version</th>
+                      <th className="px-3 py-2 font-medium">Run at</th>
+                      <th className="px-3 py-2 font-medium">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {runs.map((run, i) => (
+                      <tr key={`${run.suiteVersion}-${run.runAt}-${i}`} className="border-b border-border/40">
+                        <td className="px-3 py-2">
+                          <Badge variant="outline">{run.suiteVersion}</Badge>
+                        </td>
+                        <td className="px-3 py-2 text-muted-foreground">{formatDate(run.runAt)}</td>
+                        <td className="px-3 py-2 font-medium">{formatPercent(run.aggregateScore)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </main>
+    </div>
   )
 }

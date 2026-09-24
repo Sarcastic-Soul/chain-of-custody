@@ -291,5 +291,10 @@ export async function askAgent(question: string): Promise<AskResult> {
     citations,
     supersededNotice,
     claimId,
+    trace: {
+      candidatesProposed: candidates.length,
+      candidatesRejected: candidates.length - verified.length,
+      citationsKept: groundedCitations.length,
+    },
   }
 }
