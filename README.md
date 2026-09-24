@@ -21,8 +21,8 @@ See `overview.md`, `architecture.md`, `schema.md`, and `why-it-wins.md` for the 
 - Next.js 15 (App Router) + TypeScript, pnpm
 - Sanity (schema + Studio, embedded at `/studio`) — content lives in a `sourceDocument` / `claim` / `quoteEvidence` / `redTeamCase` / `redTeamRun` / `trustMetricSnapshot` schema (`schema.md`)
 - [Sanity Context MCP](https://www.sanity.io/docs/ai/sanity-context-mcp) in **dataset (GROQ) mode**, so the agent gets documents back verbatim rather than AI-summarized — required for exact-substring verification to mean anything. A Knowledge Base is also attached to the same endpoint to satisfy the challenge's "backed by a Knowledge Base" requirement; GROQ mode wins when both sources are present.
-- Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/groq`) for the tool-calling loop
-- Groq (`openai/gpt-oss-120b`) as the model provider
+- Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/google`) for the tool-calling loop
+- Google Gemini (`gemini-3.5-flash-lite`) as the model provider
 
 ## Setup
 
@@ -42,7 +42,7 @@ pnpm dev                     # http://localhost:3000
 | `SANITY_API_TOKEN` | Project API token, Developer/Editor role (read+write) — used for seeding and for the agent's write-back |
 | `SANITY_CONTEXT_MCP_URL` | Sanity Dashboard → org → Context app → MCP endpoint URL |
 | `SANITY_ORGANIZATION_TOKEN` | Org-level token with "Context Viewer" permission, plus a project-level role grant for this project |
-| `GROQ_API_KEY` | [console.groq.com](https://console.groq.com) |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) |
 
 The Sanity Context MCP endpoint requires a **deployed Studio (v5.1.0+)** on the dataset for GROQ/dataset-source mode to work (`npx sanity deploy`).
 
@@ -60,7 +60,3 @@ The Sanity Context MCP endpoint requires a **deployed Studio (v5.1.0+)** on the 
 - `/` — ask the agent a question, see the verdict (grounded / contradicted / ungrounded), citations, and any supersession notice
 - `/studio` — embedded Sanity Studio
 - `/dashboard` — Trust Dashboard: latest `trustMetricSnapshot` (grounding rate, contradiction-surfacing rate, red-team pass rate) plus recent `redTeamRun`s
-
-## Known constraint
-
-The Groq API key used here is on the free tier (8000 tokens/minute, shared across models). A single agent turn — dataset query + full document bodies + tool-calling overhead — runs close to that ceiling, so back-to-back questions can hit `429`s and retry with backoff (the AI SDK respects Groq's `retry-after`). `pnpm redteam` paces itself (one case at a time, 15s between cases) to stay under the limit for a full run.

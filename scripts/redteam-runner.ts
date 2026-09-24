@@ -18,20 +18,28 @@ interface CaseResult {
 }
 
 const CONCURRENCY = 1
-const DELAY_BETWEEN_CASES_MS = 15000
+const DELAY_BETWEEN_CASES_MS = 0
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
+  const startedAt = Date.now()
+  console.log(`[${new Date().toISOString()}] START ${redTeamCase.caseId}`)
+
   let result
   try {
     result = await askAgent(redTeamCase.probeQuestion)
   } catch (err) {
-    console.error(`case ${redTeamCase.caseId} failed:`, err instanceof Error ? err.message : err)
+    console.error(
+      `[${new Date().toISOString()}] FAIL  ${redTeamCase.caseId} after ${Date.now() - startedAt}ms:`,
+      err instanceof Error ? err.message : err,
+    )
     return { redTeamCase, passed: false, agentResponse: `ERROR: ${err instanceof Error ? err.message : String(err)}` }
   }
+
+  console.log(`[${new Date().toISOString()}] DONE  ${redTeamCase.caseId} in ${Date.now() - startedAt}ms -> ${result.status}`)
 
   let passed: boolean
   switch (redTeamCase.expectedBehavior) {

@@ -13,11 +13,11 @@
     "redteam": "DOTENV_CONFIG_PATH=.env.local tsx scripts/redteam-runner.ts"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.0",
-    "@ai-sdk/mcp": "^1.0.0",
+    "@ai-sdk/google": "^4.0.79",
+    "@ai-sdk/mcp": "^2.0.57",
     "@sanity/client": "^8.7.0",
     "@sanity/vision": "^6.16.0",
-    "ai": "^6.0.0",
+    "ai": "^7.0.113",
     "dotenv": "^16.4.7",
     "next": "^15.5.0",
     "next-sanity": "^13.3.4",

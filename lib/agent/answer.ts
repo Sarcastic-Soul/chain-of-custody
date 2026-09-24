@@ -3,7 +3,7 @@ import { generateText, hasToolCall, stepCountIs, tool, type ToolSet } from 'ai'
 import { z } from 'zod'
 import { readClient, writeClient } from '@/lib/sanity/client'
 import { getMcpTools } from './mcpClient'
-import { groqModel } from './groqModel'
+import { geminiModel } from './geminiModel'
 import { verifyExactSubstring } from './verify'
 import type { AskResult, Citation, ClaimStatus, Stance } from './types'
 
@@ -80,7 +80,7 @@ async function proposeCandidatesForQuestion(question: string): Promise<Candidate
   const tools: ToolSet = groq_query ? { groq_query, proposeCandidates } : { proposeCandidates }
 
   const result = await generateText({
-    model: groqModel,
+    model: geminiModel,
     system: SYSTEM_PROMPT,
     prompt: question,
     tools,
