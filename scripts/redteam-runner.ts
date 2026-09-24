@@ -17,10 +17,21 @@ interface CaseResult {
   agentResponse: string
 }
 
-const CONCURRENCY = 3
+const CONCURRENCY = 1
+const DELAY_BETWEEN_CASES_MS = 15000
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
-  const result = await askAgent(redTeamCase.probeQuestion)
+  let result
+  try {
+    result = await askAgent(redTeamCase.probeQuestion)
+  } catch (err) {
+    console.error(`case ${redTeamCase.caseId} failed:`, err instanceof Error ? err.message : err)
+    return { redTeamCase, passed: false, agentResponse: `ERROR: ${err instanceof Error ? err.message : String(err)}` }
+  }
 
   let passed: boolean
   switch (redTeamCase.expectedBehavior) {
@@ -65,6 +76,7 @@ async function runBatched<T, R>(items: T[], batchSize: number, fn: (item: T) => 
     const batch = items.slice(i, i + batchSize)
     const batchResults = await Promise.all(batch.map(fn))
     results.push(...batchResults)
+    if (i + batchSize < items.length) await sleep(DELAY_BETWEEN_CASES_MS)
   }
   return results
 }

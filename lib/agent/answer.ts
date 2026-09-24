@@ -43,11 +43,13 @@ async function fetchSourceDocument(id: string): Promise<SourceDocRecord | null> 
   return readClient.fetch<SourceDocRecord | null>(SOURCE_DOC_QUERY, { id })
 }
 
-const SYSTEM_PROMPT = `You are the Chain of Custody research agent. You answer questions using only quotes from source documents stored in the Sanity knowledge base, retrieved through your tools.
+const SYSTEM_PROMPT = `You are the Chain of Custody research agent. You answer questions using only quotes from sourceDocument records in a Sanity dataset, retrieved through your tools.
 
-Call initial_context first to see the knowledge base outline, then call knowledge_base_read to read entries relevant to the question. Read their body text carefully before proposing anything.
+Call groq_query exactly once (only re-query if your first query returned zero results) against the "sourceDocument" document type, with a narrow, targeted query — never fetch the whole dataset. sourceDocument fields: _id, title, body (plain text), url, documentType, publishedAt, supersedes (reference), verified. Use GROQ's match operator with keywords from the question, project only the fields you need, and cap the result count. Example shape:
+*[_type == "sourceDocument" && (title match "keyword*" || body match "keyword*")]{_id, title, url, publishedAt, body}[0...4]
+Fetching every sourceDocument unfiltered wastes tokens and will get rate-limited — always filter and limit.
 
-For every relevant quote you find, propose it by calling proposeCandidates. Every quoteText you propose must be copied verbatim, character for character, from a source document's body field — do not paraphrase, summarize, correct typos, or fill in a quote from memory. You believe each quote appears exactly as written in the retrieved text, but that belief is never trusted on its own: the calling code independently re-verifies every quote against the source document before it is used, and discards anything that does not match exactly. Never invent a sourceDocumentId or a quote you did not actually retrieve.
+Read the returned body text carefully before proposing anything. For every relevant quote you find, propose it by calling proposeCandidates. Every quoteText you propose must be copied verbatim, character for character, from a source document's body field — do not paraphrase, summarize, correct typos, or fill in a quote from memory. sourceDocumentId must be the exact _id of the sourceDocument the quote came from. You believe each quote appears exactly as written in the retrieved text, but that belief is never trusted on its own: the calling code independently re-verifies every quote against the source document before it is used, and discards anything that does not match exactly. Never invent a sourceDocumentId or a quote you did not actually retrieve.
 
 Mark a quote stance: "supports" when it supports an affirmative answer to the question, and stance: "contradicts" when it disputes or conflicts with that answer. If you find verified-looking quotes on both sides, include both — never silently pick a side.
 
@@ -74,23 +76,24 @@ const proposeCandidates = tool({
 
 async function proposeCandidatesForQuestion(question: string): Promise<Candidate[]> {
   const mcpTools = await getMcpTools()
-  const tools: ToolSet = { ...mcpTools, proposeCandidates }
+  const { groq_query } = mcpTools
+  const tools: ToolSet = groq_query ? { groq_query, proposeCandidates } : { proposeCandidates }
 
   const result = await generateText({
     model: groqModel,
     system: SYSTEM_PROMPT,
     prompt: question,
     tools,
-    stopWhen: [hasToolCall('proposeCandidates'), stepCountIs(8)],
+    stopWhen: [hasToolCall('proposeCandidates'), stepCountIs(4)],
   })
 
-  for (const step of result.steps) {
-    for (const call of step.toolCalls ?? []) {
-      console.error('DEBUG toolCall', call.toolName, JSON.stringify(call.input).slice(0, 300))
+  if (process.env.AGENT_DEBUG) {
+    for (const step of result.steps) {
+      for (const call of step.toolCalls ?? []) {
+        console.error('DEBUG toolCall', call.toolName, JSON.stringify(call.input).slice(0, 300))
+      }
     }
-    for (const r of step.toolResults ?? []) {
-      console.error('DEBUG toolResult', r.toolName, JSON.stringify(r.output ?? (r as any).result).slice(0, 1200))
-    }
+    console.error('DEBUG usage', JSON.stringify(result.usage))
   }
 
   const proposalCall = result.toolCalls.find((call) => call.toolName === 'proposeCandidates')
