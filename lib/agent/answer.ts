@@ -150,8 +150,8 @@ async function proposeFromSources(
     tools: { proposeCandidates },
     toolChoice: { type: 'tool', toolName: 'proposeCandidates' },
     stopWhen: stepCountIs(1),
-    // Failed requests count toward the flash models' 20-a-day free quota, so never retry here:
-    // callers fall back to another model (live app) or wait and retry the whole case (red-team runner).
+    // Don't wait out an overloaded model with the SDK's backoff retries: callers fall back to the
+    // other model (live app) or wait and retry the whole case (red-team runner).
     maxRetries: 0,
   })
 
@@ -170,7 +170,7 @@ interface Proposal {
   retrievedBy: ModelId
 }
 
-/** With fallback on, a capacity error on the retrieval model hands the queries to Flash-Lite. */
+/** With fallback on, a capacity error on the retrieval model hands the queries to the fallback model. */
 async function retrieveWithFallback(question: string, fallback: boolean): Promise<{ retrieved: string[]; retrievedBy: ModelId }> {
   try {
     return { retrieved: await retrieveSources(question, RETRIEVAL_MODEL_ID), retrievedBy: RETRIEVAL_MODEL_ID }

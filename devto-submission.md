@@ -51,7 +51,7 @@ The homepage has four example questions from the seeded case, or you can ask you
 - "Is Super Micro currently delisted from Nasdaq?"
 - Ask something the seeded documents never covered and watch it refuse instead of inventing an answer.
 
-No login needed. By default `gemma4:31b` writes the queries and `gpt-oss:120b` picks the quotes, both on Ollama Cloud. The composer lets you switch the quote-picking model to Gemma or any Gemini flash model, so you can compare accuracy and latency yourself instead of trusting one fixed model. The public demo answers up to 100 questions a day.
+No login needed. By default `gemma4:31b` writes the queries and `gpt-oss:120b` picks the quotes, both on Ollama Cloud. The composer lets you switch the quote-picking model to `gemma4:31b`, so you can compare accuracy and latency yourself instead of trusting one fixed model. The public demo answers up to 100 questions a day.
 
 ## Code
 
@@ -74,7 +74,7 @@ Sanity holds both the evidence and the agent's own track record.
 1. **Retrieval.** `gemma4:31b` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It can make a second query to look for sources that dispute the first ones.
 2. **Quote picking.** The model you chose (by default `gpt-oss:120b`) gets the raw query results and makes one forced `proposeCandidates` call, proposing quotes with a stance (`supports` or `contradicts`).
 
-Splitting it this way keeps each step small: the quote-picking call only sees the query results, not the tool definitions and query history. Everything runs on free tiers, so if a model is out of quota the agent falls back instead of failing: retrieval moves to `gemini-3.5-flash-lite`, and quote picking moves to the next model in the list. The trace panel shows which model did each step.
+Splitting it this way keeps each step small: the quote-picking call only sees the query results, not the tool definitions and query history. Everything runs on Ollama Cloud's free tier, so if one model is overloaded the agent falls back to the other instead of failing. The trace panel shows which model did each step.
 
 Server code then checks each quote against the real document, groups quotes by `supersedes` chain, keeps only the newest document in each chain, and decides grounded / contradicted / ungrounded. The result is written back to Sanity as a `claim` with its `quoteEvidence`.
 
@@ -106,9 +106,8 @@ Reliability is reported as a running, checkable record instead of a one-time cla
 
 - Next.js 15 (App Router) + TypeScript, deployed on Vercel
 - Sanity: schema, embedded Studio, Context MCP, Knowledge Base
-- Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/google`) for the tool-calling loop
+- Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/openai-compatible`) for the tool-calling loop
 - Ollama Cloud (through `@ai-sdk/openai-compatible`): `gemma4:31b` writes the queries, `gpt-oss:120b` picks the quotes. I tested all six free Ollama cloud models side by side; this pair was the fastest that also retrieved the right documents and copied quotes exactly.
-- Google Gemini flash models as fallbacks and as options in the model picker
 
 ## Sanity Project Details
 
