@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { askAgent } from '@/lib/agent'
-import { isCapacityError, isGeminiModelId } from '@/lib/agent/geminiModel'
-import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
+import { isCapacityError, isModelId } from '@/lib/agent/models'
+import { DEFAULT_MODEL_ID } from '@/lib/agent/types'
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null)
   const question = typeof body?.question === 'string' ? body.question.trim() : ''
-  const modelId = typeof body?.model === 'string' && isGeminiModelId(body.model) ? body.model : DEFAULT_GEMINI_MODEL_ID
+  const modelId = typeof body?.model === 'string' && isModelId(body.model) ? body.model : DEFAULT_MODEL_ID
 
   if (!question) {
     return NextResponse.json({ error: 'question is required' }, { status: 400 })

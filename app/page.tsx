@@ -23,9 +23,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { DEFAULT_GEMINI_MODEL_ID, GEMINI_MODEL_IDS, type AskResult, type GeminiModelId } from '@/lib/agent/types'
+import { DEFAULT_MODEL_ID, MODEL_IDS, type AskResult, type ModelId } from '@/lib/agent/types'
 
-const MODEL_LABELS: Record<GeminiModelId, string> = {
+const MODEL_LABELS: Record<ModelId, string> = {
+  'gpt-oss:120b': 'gpt-oss 120B (Ollama)',
   'gemini-3.8-flash': 'Gemini 3.8 Flash',
   'gemini-3.7-flash': 'Gemini 3.7 Flash',
   'gemini-3.6-flash': 'Gemini 3.6 Flash',
@@ -99,7 +100,7 @@ function AnswerBubble({ result }: { result: AskResult }) {
 
 export default function Home() {
   const [question, setQuestion] = useState('')
-  const [modelId, setModelId] = useState<GeminiModelId>(DEFAULT_GEMINI_MODEL_ID)
+  const [modelId, setModelId] = useState<ModelId>(DEFAULT_MODEL_ID)
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const loading = turns.some((t) => t.status === 'pending')
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -255,12 +256,12 @@ export default function Home() {
                 className="max-h-64 min-h-9 resize-none border-none bg-transparent px-2 py-1.5 text-[15px] shadow-none focus-visible:ring-0 dark:bg-transparent"
               />
               <div className="flex items-center justify-between gap-2">
-                <Select value={modelId} onValueChange={(value) => setModelId(value as GeminiModelId)}>
+                <Select value={modelId} onValueChange={(value) => setModelId(value as ModelId)}>
                   <SelectTrigger size="sm" className="h-7 w-auto gap-1.5 border-none bg-transparent px-2 text-xs text-muted-foreground shadow-none hover:bg-accent">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent align="start">
-                    {GEMINI_MODEL_IDS.map((id) => (
+                    {MODEL_IDS.map((id) => (
                       <SelectItem key={id} value={id}>
                         {MODEL_LABELS[id]}
                       </SelectItem>

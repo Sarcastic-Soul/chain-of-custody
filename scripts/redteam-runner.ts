@@ -1,14 +1,14 @@
 import 'dotenv/config'
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import { askAgent } from '@/lib/agent'
-import { isCapacityError, isDailyQuotaError, isGeminiModelId } from '@/lib/agent/geminiModel'
-import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
+import { isCapacityError, isDailyQuotaError, isModelId } from '@/lib/agent/models'
+import { DEFAULT_MODEL_ID } from '@/lib/agent/types'
 import { readClient, writeClient } from '@/lib/sanity/client'
 
 const modelId =
-  process.env.REDTEAM_MODEL && isGeminiModelId(process.env.REDTEAM_MODEL)
+  process.env.REDTEAM_MODEL && isModelId(process.env.REDTEAM_MODEL)
     ? process.env.REDTEAM_MODEL
-    : DEFAULT_GEMINI_MODEL_ID
+    : DEFAULT_MODEL_ID
 
 interface RedTeamCase {
   _id: string

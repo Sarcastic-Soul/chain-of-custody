@@ -1,18 +1,24 @@
 export type Stance = 'supports' | 'contradicts'
 export type ClaimStatus = 'grounded' | 'contradicted' | 'ungrounded'
 
-/** Gemini models offered in the UI, newest first. Kept here (not geminiModel.ts) so the client bundle never pulls in the Google SDK. */
-export const GEMINI_MODEL_IDS = [
+/**
+ * Models offered in the UI: gpt-oss on Ollama Cloud first, then Gemini newest first. Kept here
+ * (not models.ts) so the client bundle never pulls in the provider SDKs.
+ */
+export const MODEL_IDS = [
+  'gpt-oss:120b',
   'gemini-3.8-flash',
   'gemini-3.7-flash',
   'gemini-3.6-flash',
   'gemini-3.5-flash',
   'gemini-3.5-flash-lite',
 ] as const
-export type GeminiModelId = (typeof GEMINI_MODEL_IDS)[number]
-export const DEFAULT_GEMINI_MODEL_ID: GeminiModelId = 'gemini-3.6-flash'
-/** Writes the GROQ queries. Its free-tier limit is far higher than the flash models', so each question spends exactly one flash call, on choosing quotes. */
-export const RETRIEVAL_MODEL_ID: GeminiModelId = 'gemini-3.5-flash-lite'
+export type ModelId = (typeof MODEL_IDS)[number]
+export const DEFAULT_MODEL_ID: ModelId = 'gpt-oss:120b'
+/** Writes the GROQ queries. */
+export const RETRIEVAL_MODEL_ID: ModelId = 'gpt-oss:120b'
+/** Writes the GROQ queries when the retrieval model is at capacity. Its free-tier limit is far higher than the flash models'. */
+export const RETRIEVAL_FALLBACK_MODEL_ID: ModelId = 'gemini-3.5-flash-lite'
 
 export interface Citation {
   sourceDocumentId: string
@@ -33,12 +39,12 @@ export interface AskResult {
   supersededNotice?: string
   /** id of the `claim` document written for this question. */
   claimId: string
-  /** Gemini model that chose the quotes for this answer. */
-  modelId: GeminiModelId
-  /** Set when the chosen model was at capacity and another flash model answered instead. */
-  fallbackFrom?: GeminiModelId
-  /** Gemini model that wrote the GROQ queries. */
-  retrievalModelId: GeminiModelId
+  /** Model that chose the quotes for this answer. */
+  modelId: ModelId
+  /** Set when the chosen model was at capacity and another model answered instead. */
+  fallbackFrom?: ModelId
+  /** Model that wrote the GROQ queries. */
+  retrievalModelId: ModelId
   /** Verification pipeline counts, for surfacing the grounding process in the UI. */
   trace: {
     /** Quotes the model proposed from retrieved source documents. */

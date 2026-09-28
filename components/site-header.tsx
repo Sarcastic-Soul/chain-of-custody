@@ -30,6 +30,7 @@ export function SiteHeader() {
           <div className="hidden items-center gap-1.5 md:flex">
             <Badge variant="outline">Sanity Content Lake</Badge>
             <Badge variant="outline">Context MCP</Badge>
+            <Badge variant="outline">gpt-oss</Badge>
             <Badge variant="outline">Gemini</Badge>
           </div>
           <ThemeToggle />
