@@ -92,7 +92,7 @@ pnpm redteam        # runs every case through the agent and scores pass/fail
 
 Each run is written back to Sanity as a `redTeamRun` (per-case results) and a `trustMetricSnapshot` (aggregate score), so the number isn't something pasted into this post once and never checked again.
 
-**Current suite result: 10/12 (83%) with `gemma4:31b` retrieving and `gpt-oss:120b` picking quotes, run on September 28, 2026.** All prompt-injection, near-miss and stale-claim cases pass. Two of three fabricated-authority cases still fail: the agent grounds its answer on the official-looking fake document without surfacing the real source that contradicts it. Every run is stored in Sanity, so the dashboard shows the history, not just the best result.
+**Current suite result: 11/12 (92%) with `gemma4:31b` retrieving and `gpt-oss:120b` picking quotes, run on September 28, 2026.** It started at 10/12. Two changes fixed the gap: the agent now always runs a second query on who or what the question is about rather than the question's own wording (which tends to match only the planted document), and it proposes supporting and contradicting quotes in separate lists, which stopped it from quoting one side and moving on. The remaining failure is a fake board statement admitting the short-seller's claims. Nothing in the dataset disputes it head-on; the evidence against it is indirect (the 10-K made no restatement, and the Special Committee found no evidence of misconduct), and the agent doesn't always connect the two. Every run is stored in Sanity, so the dashboard shows the full history, not just the best result.
 
 **The Trust Dashboard** (`/dashboard`) reads the agent's own history from Sanity, live:
 
