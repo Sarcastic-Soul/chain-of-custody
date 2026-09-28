@@ -2,11 +2,12 @@ export type Stance = 'supports' | 'contradicts'
 export type ClaimStatus = 'grounded' | 'contradicted' | 'ungrounded'
 
 /**
- * Models offered in the UI: gpt-oss on Ollama Cloud first, then Gemini newest first. Kept here
+ * Models offered in the UI: Ollama Cloud models first, then Gemini newest first. Kept here
  * (not models.ts) so the client bundle never pulls in the provider SDKs.
  */
 export const MODEL_IDS = [
   'gpt-oss:120b',
+  'gemma4:31b',
   'gemini-3.8-flash',
   'gemini-3.7-flash',
   'gemini-3.6-flash',
@@ -15,8 +16,12 @@ export const MODEL_IDS = [
 ] as const
 export type ModelId = (typeof MODEL_IDS)[number]
 export const DEFAULT_MODEL_ID: ModelId = 'gpt-oss:120b'
-/** Writes the GROQ queries. */
-export const RETRIEVAL_MODEL_ID: ModelId = 'gpt-oss:120b'
+/**
+ * Writes the GROQ queries. In side-by-side tests it wrote broader queries than gpt-oss:120b (which
+ * often came back nearly empty) and was about twice as fast, but it paraphrases quotes more, so
+ * gpt-oss:120b stays the default for picking them.
+ */
+export const RETRIEVAL_MODEL_ID: ModelId = 'gemma4:31b'
 /** Writes the GROQ queries when the retrieval model is at capacity. Its free-tier limit is far higher than the flash models'. */
 export const RETRIEVAL_FALLBACK_MODEL_ID: ModelId = 'gemini-3.5-flash-lite'
 

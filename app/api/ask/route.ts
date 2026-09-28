@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { askAgent } from '@/lib/agent'
+import { takeDailyQuestionSlot } from '@/lib/rateLimit'
 import { isCapacityError, isModelId } from '@/lib/agent/models'
 import { DEFAULT_MODEL_ID } from '@/lib/agent/types'
 
@@ -10,6 +11,13 @@ export async function POST(request: Request) {
 
   if (!question) {
     return NextResponse.json({ error: 'question is required' }, { status: 400 })
+  }
+
+  if (!(await takeDailyQuestionSlot())) {
+    return NextResponse.json(
+      { error: 'This demo has hit its daily question limit. Please try again tomorrow.' },
+      { status: 429 },
+    )
   }
 
   try {

@@ -27,6 +27,7 @@ import { DEFAULT_MODEL_ID, MODEL_IDS, type AskResult, type ModelId } from '@/lib
 
 const MODEL_LABELS: Record<ModelId, string> = {
   'gpt-oss:120b': 'gpt-oss 120B (Ollama)',
+  'gemma4:31b': 'Gemma 4 31B (Ollama)',
   'gemini-3.8-flash': 'Gemini 3.8 Flash',
   'gemini-3.7-flash': 'Gemini 3.7 Flash',
   'gemini-3.6-flash': 'Gemini 3.6 Flash',
