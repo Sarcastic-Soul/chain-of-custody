@@ -47,5 +47,9 @@ export interface AskResult {
     candidatesRejected: number
     /** Verified quotes kept after the supersedes chain resolution. */
     citationsKept: number
+    /** True when every verified quote pointed the same way, so the agent tried to disprove the answer. */
+    crossExamined: boolean
+    /** Opposite-side quotes the cross-examination found that passed verification. */
+    counterQuotesKept: number
   }
 }

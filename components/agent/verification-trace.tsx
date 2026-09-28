@@ -1,4 +1,4 @@
-import { Ban, GitCompareArrows, History, Quote, Search, ShieldCheck, ShieldX } from 'lucide-react'
+import { Ban, GitCompareArrows, History, Quote, Scale, Search, ShieldCheck, ShieldX } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { VerdictBadge } from '@/components/agent/verdict-badge'
@@ -126,6 +126,21 @@ export function VerificationTrace({ result }: { result: AskResult | null }) {
                     tone="good"
                     label={`${result.trace.citationsKept} verified quote${result.trace.citationsKept === 1 ? '' : 's'} kept`}
                     detail="Passed exact-match verification and the supersedes check."
+                  />
+                </>
+              )}
+              {result.trace.crossExamined && (
+                <>
+                  <Separator />
+                  <TraceRow
+                    icon={Scale}
+                    tone={result.trace.counterQuotesKept > 0 ? 'default' : 'good'}
+                    label={
+                      result.trace.counterQuotesKept > 0
+                        ? `Cross-examination found ${result.trace.counterQuotesKept} counter-quote${result.trace.counterQuotesKept === 1 ? '' : 's'}`
+                        : 'Cross-examination found no conflict'
+                    }
+                    detail="Every quote pointed one way, so the agent re-read the retrieved documents and tried to disprove the answer, including indirect conflicts."
                   />
                 </>
               )}

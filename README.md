@@ -13,8 +13,9 @@ See `overview.md`, `architecture.md`, `schema.md`, and `why-it-wins.md` for the 
 3. It proposes candidate quotes via a structured tool call (`proposeCandidates`) — every quote is supposed to be copied verbatim from a document's `body` field.
 4. **The candidate quotes are never trusted.** Server-side code independently re-fetches each cited `sourceDocument` and checks the quote is an exact substring of its `body`. Anything that doesn't match exactly is discarded.
 5. Verified quotes are grouped by `supersedes` chain. If a chain has quotes from more than one document, only the newest document's quotes are kept, and a `supersededNotice` explains what was dropped.
-6. If quotes exist on both sides of the question, the answer is `contradicted` and both are shown. If only one side has quotes, it's `grounded`. If nothing verifies, it's `ungrounded` and the agent explicitly refuses.
-7. Every answer is written back to Sanity as a `claim` + `quoteEvidence` pair, so the whole run is auditable in Studio.
+6. If every verified quote points the same way, the agent cross-examines its own answer: one more `proposeCandidates` call tries to disprove it from the same retrieved documents, including indirect conflicts (e.g. a later investigation's findings). Only opposite-side quotes are kept, and they go through the same exact-substring check.
+7. If quotes exist on both sides of the question, the answer is `contradicted` and both are shown. If only one side has quotes, it's `grounded`. If nothing verifies, it's `ungrounded` and the agent explicitly refuses.
+8. Every answer is written back to Sanity as a `claim` + `quoteEvidence` pair, so the whole run is auditable in Studio.
 
 ## Stack
 
