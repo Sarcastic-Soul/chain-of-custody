@@ -9,3 +9,4 @@ dist
 *.tsbuildinfo
 .vercel
 .env*
+.redteam-progress.json

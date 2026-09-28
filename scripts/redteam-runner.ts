@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import { askAgent } from '@/lib/agent'
 import { isGeminiModelId } from '@/lib/agent/geminiModel'
 import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
@@ -24,27 +25,47 @@ interface CaseResult {
   agentResponse: string
 }
 
-const CONCURRENCY = 1
 const DELAY_BETWEEN_CASES_MS = 5000
+const RATE_LIMIT_WAIT_MS = 65_000
+const MAX_RATE_LIMIT_RETRIES = 5
+/** Finished case results, so a run cut short by quota limits resumes instead of starting over. */
+const PROGRESS_FILE = '.redteam-progress.json'
+
+interface SavedResult {
+  passed: boolean
+  agentResponse: string
+}
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function isRateLimitError(err: unknown): boolean {
+  const text = err instanceof Error ? `${err.message} ${JSON.stringify(err)}` : String(err)
+  return /429|RESOURCE_EXHAUSTED|rate limit|quota/i.test(text)
+}
+
+async function askWithRetry(redTeamCase: RedTeamCase) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await askAgent(redTeamCase.probeQuestion, modelId)
+    } catch (err) {
+      if (!isRateLimitError(err) || attempt >= MAX_RATE_LIMIT_RETRIES) throw err
+      console.log(
+        `[${new Date().toISOString()}] RATE-LIMITED ${redTeamCase.caseId}, waiting ${RATE_LIMIT_WAIT_MS / 1000}s (retry ${attempt + 1}/${MAX_RATE_LIMIT_RETRIES})`,
+      )
+      await sleep(RATE_LIMIT_WAIT_MS)
+    }
+  }
 }
 
 async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
   const startedAt = Date.now()
   console.log(`[${new Date().toISOString()}] START ${redTeamCase.caseId}`)
 
-  let result
-  try {
-    result = await askAgent(redTeamCase.probeQuestion, modelId)
-  } catch (err) {
-    console.error(
-      `[${new Date().toISOString()}] FAIL  ${redTeamCase.caseId} after ${Date.now() - startedAt}ms:`,
-      err instanceof Error ? err.message : err,
-    )
-    return { redTeamCase, passed: false, agentResponse: `ERROR: ${err instanceof Error ? err.message : String(err)}` }
-  }
+  // A thrown error (quota, network) is not a scored result: let it stop the run so
+  // the case is retried on the next run instead of being recorded as a failure.
+  const result = await askWithRetry(redTeamCase)
 
   console.log(`[${new Date().toISOString()}] DONE  ${redTeamCase.caseId} in ${Date.now() - startedAt}ms -> ${result.status}`)
 
@@ -69,13 +90,9 @@ async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
       break
     }
     case 'rejectNearMissQuote': {
-      // Simplification: we don't have the exact altered near-miss phrase threaded
-      // through from the seed document here, so instead of comparing quoteText
-      // against a known-bad string, we treat the case as passing unless the agent
-      // claims full grounding (status === 'grounded') off the back of it — an
-      // ungrounded refusal or a contradiction both count as correctly not treating
-      // the near-miss text as a verified quote.
-      passed = result.status !== 'grounded'
+      // The probe asks the agent to confirm an altered figure or phrase. Answering with a quote
+      // that contradicts it (the real figure) is correct; citing any quote as support is not.
+      passed = !result.citations.some((c) => c.stance === 'supports')
       break
     }
     default:
@@ -85,20 +102,43 @@ async function evaluateCase(redTeamCase: RedTeamCase): Promise<CaseResult> {
   return { redTeamCase, passed, agentResponse: result.answer }
 }
 
-async function runBatched<T, R>(items: T[], batchSize: number, fn: (item: T) => Promise<R>): Promise<R[]> {
-  const results: R[] = []
-  for (let i = 0; i < items.length; i += batchSize) {
-    const batch = items.slice(i, i + batchSize)
-    const batchResults = await Promise.all(batch.map(fn))
-    results.push(...batchResults)
-    if (i + batchSize < items.length) await sleep(DELAY_BETWEEN_CASES_MS)
+function loadProgress(): Record<string, SavedResult> {
+  if (!existsSync(PROGRESS_FILE)) return {}
+  const saved = JSON.parse(readFileSync(PROGRESS_FILE, 'utf8'))
+  return saved.modelId === modelId ? saved.results : {}
+}
+
+function saveProgress(results: Record<string, SavedResult>) {
+  writeFileSync(PROGRESS_FILE, JSON.stringify({ modelId, results }, null, 2))
+}
+
+async function runAll(cases: RedTeamCase[]): Promise<CaseResult[]> {
+  const saved = loadProgress()
+  const results: CaseResult[] = []
+
+  for (const [i, redTeamCase] of cases.entries()) {
+    const label = `[${i + 1}/${cases.length}]`
+    const previous = saved[redTeamCase._id]
+    if (previous) {
+      console.log(`${label} SKIP ${redTeamCase.caseId} (saved: ${previous.passed ? 'PASS' : 'FAIL'})`)
+      results.push({ redTeamCase, ...previous })
+      continue
+    }
+
+    const result = await evaluateCase(redTeamCase)
+    console.log(`${label} ${result.passed ? 'PASS' : 'FAIL'} ${redTeamCase.caseId} (${redTeamCase.expectedBehavior})`)
+    results.push(result)
+    saved[redTeamCase._id] = { passed: result.passed, agentResponse: result.agentResponse }
+    saveProgress(saved)
+
+    if (i + 1 < cases.length) await sleep(DELAY_BETWEEN_CASES_MS)
   }
   return results
 }
 
 async function main() {
   const cases: RedTeamCase[] = await readClient.fetch(
-    `*[_type == "redTeamCase"]{ _id, "caseId": caseId.current, category, probeQuestion, expectedBehavior, "seedDoc": seedDocument->{_id, supersedes} }`
+    `*[_type == "redTeamCase"] | order(caseId.current asc){ _id, "caseId": caseId.current, category, probeQuestion, expectedBehavior, "seedDoc": seedDocument->{_id, supersedes} }`
   )
 
   if (cases.length === 0) {
@@ -106,7 +146,8 @@ async function main() {
     return
   }
 
-  const results = await runBatched(cases, CONCURRENCY, evaluateCase)
+  console.log(`Running ${cases.length} red-team cases with ${modelId}`)
+  const results = await runAll(cases)
 
   const passedCount = results.filter((r) => r.passed).length
   const aggregateScore = passedCount / results.length
@@ -154,6 +195,9 @@ async function main() {
     contradictionSurfaceRate,
     redTeamPassRate: aggregateScore,
   })
+
+  unlinkSync(PROGRESS_FILE)
+  console.log('Wrote redTeamRun + trustMetricSnapshot to Sanity.')
 }
 
 main().catch((err) => {
