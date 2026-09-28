@@ -51,7 +51,7 @@ The homepage has four example questions from the seeded case, or you can ask you
 - "Is Super Micro currently delisted from Nasdaq?"
 - Ask something the seeded documents never covered and watch it refuse instead of inventing an answer.
 
-No login needed. The composer also lets you pick the Gemini model that chooses the quotes (`gemini-3.5-flash-lite` through `gemini-3.8-flash`), so you can compare accuracy and latency yourself instead of trusting one fixed model.
+No login needed. The default model is `gpt-oss:120b` on Ollama Cloud, and the composer lets you switch the model that picks the quotes to any Gemini flash model (`gemini-3.5-flash-lite` through `gemini-3.8-flash`), so you can compare accuracy and latency yourself instead of trusting one fixed model.
 
 ## Code
 
@@ -71,10 +71,10 @@ Sanity holds both the evidence and the agent's own track record.
 
 **What the agent does with the results.** Each question runs in two steps:
 
-1. **Retrieval.** `gemini-3.5-flash-lite` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It can make a second query to look for sources that dispute the first ones.
+1. **Retrieval.** `gpt-oss:120b` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It can make a second query to look for sources that dispute the first ones.
 2. **Quote picking.** The model you chose gets the raw query results and makes one forced `proposeCandidates` call, proposing quotes with a stance (`supports` or `contradicts`).
 
-Splitting it this way means each question uses exactly one call to the stronger model, which matters on free-tier limits. If that model is out of quota, the next flash model answers instead, and the trace panel says so.
+Splitting it this way keeps each step small: the quote-picking call only sees the query results, not the tool definitions and query history. Everything runs on free tiers, so if a model is out of quota the agent falls back instead of failing: retrieval moves to `gemini-3.5-flash-lite`, and quote picking moves to the next model in the list. The trace panel shows which model did each step.
 
 Server code then checks each quote against the real document, groups quotes by `supersedes` chain, keeps only the newest document in each chain, and decides grounded / contradicted / ungrounded. The result is written back to Sanity as a `claim` with its `quoteEvidence`.
 
@@ -92,7 +92,7 @@ pnpm redteam        # runs every case through the agent and scores pass/fail
 
 Each run is written back to Sanity as a `redTeamRun` (per-case results) and a `trustMetricSnapshot` (aggregate score), so the number isn't something pasted into this post once and never checked again.
 
-**Current suite result: [TODO: X/12 passed with gemini-3.6-flash, run on <date>]**
+**Current suite result: [TODO: X/12 passed with gpt-oss:120b, run on <date>]**
 
 **The Trust Dashboard** (`/dashboard`) reads the agent's own history from Sanity, live:
 
@@ -107,7 +107,8 @@ Reliability is reported as a running, checkable record instead of a one-time cla
 - Next.js 15 (App Router) + TypeScript, deployed on Vercel
 - Sanity: schema, embedded Studio, Context MCP, Knowledge Base
 - Vercel AI SDK (`ai`, `@ai-sdk/mcp`, `@ai-sdk/google`) for the tool-calling loop
-- Google Gemini: `gemini-3.5-flash-lite` for retrieval, the model picked in the UI for choosing quotes
+- `gpt-oss:120b` on Ollama Cloud (through `@ai-sdk/openai-compatible`) as the default model
+- Google Gemini flash models as fallbacks and as options in the model picker
 
 ## Sanity Project Details
 
