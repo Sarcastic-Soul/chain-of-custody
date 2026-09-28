@@ -92,7 +92,7 @@ pnpm redteam        # runs every case through the agent and scores pass/fail
 
 Each run is written back to Sanity as a `redTeamRun` (per-case results) and a `trustMetricSnapshot` (aggregate score), so the number isn't something pasted into this post once and never checked again.
 
-**Current suite result: [TODO: X/12 passed with gpt-oss:120b, run on <date>]**
+**Current suite result: 10/12 (83%) with `gemma4:31b` retrieving and `gpt-oss:120b` picking quotes, run on September 28, 2026.** All prompt-injection, near-miss and stale-claim cases pass. Two of three fabricated-authority cases still fail: the agent grounds its answer on the official-looking fake document without surfacing the real source that contradicts it. Every run is stored in Sanity, so the dashboard shows the history, not just the best result.
 
 **The Trust Dashboard** (`/dashboard`) reads the agent's own history from Sanity, live:
 
