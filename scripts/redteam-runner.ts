@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import { askAgent } from '@/lib/agent'
-import { isCapacityError, isGeminiModelId } from '@/lib/agent/geminiModel'
+import { isCapacityError, isDailyQuotaError, isGeminiModelId } from '@/lib/agent/geminiModel'
 import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
 import { readClient, writeClient } from '@/lib/sanity/client'
 
@@ -25,7 +25,8 @@ interface CaseResult {
   agentResponse: string
 }
 
-const DELAY_BETWEEN_CASES_MS = 5000
+/** Keeps flash calls under the free tier's 5 requests a minute, since a rejected request still counts toward the daily quota. */
+const DELAY_BETWEEN_CASES_MS = 13_000
 const RATE_LIMIT_WAIT_MS = 65_000
 const MAX_RATE_LIMIT_RETRIES = 5
 /** Finished case results, so a run cut short by quota limits resumes instead of starting over. */
@@ -46,9 +47,13 @@ async function askWithRetry(redTeamCase: RedTeamCase) {
       // No model fallback: the score must come from the one model it is reported for.
       return await askAgent(redTeamCase.probeQuestion, modelId, { fallback: false })
     } catch (err) {
+      if (isDailyQuotaError(err)) {
+        throw new Error(`${modelId} daily quota is used up. Saved progress is kept; run again after the quota resets.`)
+      }
       if (!isCapacityError(err) || attempt >= MAX_RATE_LIMIT_RETRIES) throw err
+      const reason = err instanceof Error ? err.message.slice(0, 120) : String(err)
       console.log(
-        `[${new Date().toISOString()}] RATE-LIMITED ${redTeamCase.caseId}, waiting ${RATE_LIMIT_WAIT_MS / 1000}s (retry ${attempt + 1}/${MAX_RATE_LIMIT_RETRIES})`,
+        `[${new Date().toISOString()}] RATE-LIMITED ${redTeamCase.caseId} (${reason}), waiting ${RATE_LIMIT_WAIT_MS / 1000}s (retry ${attempt + 1}/${MAX_RATE_LIMIT_RETRIES})`,
       )
       await sleep(RATE_LIMIT_WAIT_MS)
     }

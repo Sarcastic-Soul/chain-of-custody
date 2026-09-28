@@ -139,7 +139,6 @@ async function proposeFromSources(
   question: string,
   retrieved: string[],
   modelId: GeminiModelId,
-  maxRetries: number | undefined,
 ): Promise<Candidate[]> {
   const result = await generateText({
     model: getGeminiModel(modelId),
@@ -150,7 +149,9 @@ async function proposeFromSources(
     tools: { proposeCandidates },
     toolChoice: { type: 'tool', toolName: 'proposeCandidates' },
     stopWhen: stepCountIs(1),
-    maxRetries,
+    // Failed requests count toward the flash models' 20-a-day free quota, so never retry here:
+    // callers fall back to another model (live app) or wait and retry the whole case (red-team runner).
+    maxRetries: 0,
   })
 
   if (process.env.AGENT_DEBUG) console.error('DEBUG proposal usage', modelId, JSON.stringify(result.usage))
@@ -183,9 +184,7 @@ async function proposeCandidatesForQuestion(
   for (const [i, candidateModel] of chain.entries()) {
     const isLast = i === chain.length - 1
     try {
-      // With fallback on, skip the SDK's backoff retries: another model can take over right away,
-      // and waiting out a used-up daily quota on the last one would only hang the request.
-      const candidates = await proposeFromSources(question, retrieved, candidateModel, fallback ? 0 : undefined)
+      const candidates = await proposeFromSources(question, retrieved, candidateModel)
       return { candidates, answeredBy: candidateModel }
     } catch (err) {
       if (isLast || !isCapacityError(err)) throw err

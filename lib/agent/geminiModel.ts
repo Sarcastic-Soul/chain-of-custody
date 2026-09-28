@@ -22,6 +22,18 @@ export function isCapacityError(err: unknown): boolean {
   return CAPACITY_PATTERN.test(err.message)
 }
 
+function errorText(err: unknown): string {
+  if (!(err instanceof Error)) return String(err)
+  const { responseBody, lastError } = err as { responseBody?: string; lastError?: unknown }
+  const nested = lastError && lastError !== err ? errorText(lastError) : ''
+  return `${err.message} ${responseBody ?? ''} ${nested}`
+}
+
+/** True when a model's free-tier daily quota is used up, so retrying before the reset only wastes requests. */
+export function isDailyQuotaError(err: unknown): boolean {
+  return /PerDay/i.test(errorText(err))
+}
+
 /**
  * The chosen model first, then the other flash models newest first. Each model has its own
  * free-tier quota, so when one is used up the next can still answer. The retrieval model is left
