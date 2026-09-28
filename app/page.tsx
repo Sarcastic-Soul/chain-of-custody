@@ -30,6 +30,7 @@ const MODEL_LABELS: Record<GeminiModelId, string> = {
   'gemini-3.7-flash': 'Gemini 3.7 Flash',
   'gemini-3.6-flash': 'Gemini 3.6 Flash',
   'gemini-3.5-flash': 'Gemini 3.5 Flash',
+  'gemini-3.5-flash-lite': 'Gemini 3.5 Flash-Lite',
 }
 
 const EXAMPLE_QUESTIONS = [
