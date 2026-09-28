@@ -93,7 +93,7 @@ export function VerificationTrace({ result }: { result: AskResult | null }) {
               <TraceRow
                 icon={Search}
                 label="Queried Sanity Context MCP"
-                detail={`groq_query against sourceDocument, narrowed to the question's keywords.`}
+                detail={`${result.retrievalModelId} wrote groq_query calls against sourceDocument, narrowed to the question's keywords.`}
               />
               <Separator />
               <TraceRow
@@ -141,9 +141,14 @@ export function VerificationTrace({ result }: { result: AskResult | null }) {
                 <VerdictBadge status={result.status} />
               </div>
               <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-medium">Model</span>
+                <span className="text-sm font-medium">Quotes picked by</span>
                 <span className="text-sm text-muted-foreground">{result.modelId}</span>
               </div>
+              {result.fallbackFrom && (
+                <p className="text-xs text-muted-foreground">
+                  {result.fallbackFrom} was at capacity, so {result.modelId} answered instead.
+                </p>
+              )}
               <p className="truncate text-xs text-muted-foreground">
                 Written to Sanity as claim <code className="text-[11px]">{result.claimId}</code>
               </p>

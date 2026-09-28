@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import { askAgent } from '@/lib/agent'
-import { isGeminiModelId } from '@/lib/agent/geminiModel'
+import { isCapacityError, isGeminiModelId } from '@/lib/agent/geminiModel'
 import { DEFAULT_GEMINI_MODEL_ID } from '@/lib/agent/types'
 import { readClient, writeClient } from '@/lib/sanity/client'
 
@@ -40,17 +40,13 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-function isRateLimitError(err: unknown): boolean {
-  const text = err instanceof Error ? `${err.message} ${JSON.stringify(err)}` : String(err)
-  return /429|RESOURCE_EXHAUSTED|rate limit|quota/i.test(text)
-}
-
 async function askWithRetry(redTeamCase: RedTeamCase) {
   for (let attempt = 0; ; attempt++) {
     try {
-      return await askAgent(redTeamCase.probeQuestion, modelId)
+      // No model fallback: the score must come from the one model it is reported for.
+      return await askAgent(redTeamCase.probeQuestion, modelId, { fallback: false })
     } catch (err) {
-      if (!isRateLimitError(err) || attempt >= MAX_RATE_LIMIT_RETRIES) throw err
+      if (!isCapacityError(err) || attempt >= MAX_RATE_LIMIT_RETRIES) throw err
       console.log(
         `[${new Date().toISOString()}] RATE-LIMITED ${redTeamCase.caseId}, waiting ${RATE_LIMIT_WAIT_MS / 1000}s (retry ${attempt + 1}/${MAX_RATE_LIMIT_RETRIES})`,
       )
