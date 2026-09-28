@@ -8,9 +8,17 @@ tags: devchallenge, sanitychallenge, sanity, ai
 
 ## What I Built
 
-Ask most AI research agents a factual question and you get an answer with confidence attached, not evidence. Ask what backs the answer and the best you usually get is "I found this in a document", with no way to check whether that's what the document actually said, or whether a newer document already corrected it.
+Ask most AI research agents a factual question and you get confidence, not evidence. Ask what backs the answer and the best you usually get is "I found this in a document", with no way to check whether that's what the document said, whether a newer document already corrected it, or whether the document was real in the first place.
 
-**Chain of Custody** is a fact-checking agent that refuses to make that trade. Every claim it makes is traced to an exact, word-for-word quote from a source document stored in Sanity. The check happens in code, not in the model's say-so, and when it can't find a quote, it says so instead of guessing.
+**Chain of Custody** is a fact-checking agent built on Sanity that treats everything the model says as an unchecked claim:
+
+- **Every quote is checked in code**, character for character, against the source document in Sanity. No fuzzy matching.
+- **When sources disagree, it shows both**, dated, and doesn't pick a winner.
+- **When a document was corrected later**, only the newest version counts.
+- **When every quote points the same way, it cross-examines its own answer**, looking for evidence against it before it answers.
+- **When nothing checks out, it refuses.**
+
+And it's tested like it means it: a 12-case red-team suite (planted instructions, fake "official" statements, stale claims, near-miss quotes) runs against the live agent, and every run's score is stored in Sanity and shown on a public dashboard, including the runs that failed.
 
 The seeded case is a real short-seller dispute: Hindenburg Research vs. Super Micro Computer (SMCI), with SEC filings, the Hindenburg report, the Ernst & Young resignation letter, and the Special Committee's later findings. It's a good test because the sources genuinely disagree, and some of them were later corrected.
 
@@ -19,6 +27,8 @@ Every answer ends in one of three states, all driven by real pipeline data:
 - **Grounded**: a verified quote answers the question. Shown with the exact quote, source, and publish date.
 - **Contradicted**: verified quotes exist on both sides. Both are shown, dated, and the agent does not pick a winner for you.
 - **Ungrounded**: nothing verifies. Plain refusal: *"I don't have a sourced quote for that."*
+
+![A contradicted answer: a planted "Special Committee" statement next to the real Special Committee update, with the verification trace on the right](https://raw.githubusercontent.com/Sarcastic-Soul/chain-of-custody/main/docs/submission/contradiction.png)
 
 On top of that, it handles **supersession**. When a source document is later corrected by a newer one (the `supersedes` reference in the schema), only the newest document in that chain counts toward the answer, and the agent says what was superseded and why. If the dataset holds an even newer version that the model never quoted from, the answer flags it so you know to check it.
 
@@ -41,7 +51,7 @@ A source document that contains text aimed at the agent (a fake `SYSTEM:` messag
 - **Live app:** https://chain-custody.vercel.app/
 - **Trust Dashboard:** https://chain-custody.vercel.app/dashboard
 
-**[TODO: embed demo video]**
+{% embed https://www.youtube.com/watch?v=TODO_VIDEO_ID %}
 
 The homepage has four example questions from the seeded case, or you can ask your own:
 
@@ -63,6 +73,8 @@ https://github.com/Sarcastic-Soul/chain-of-custody
 
 Sanity holds both the evidence and the agent's own track record.
 
+![How it works: a question goes through retrieve (gemma4:31b), propose (gpt-oss:120b), verify (plain code) and cross-examine (gpt-oss:120b) to a grounded, contradicted or refused answer, with Sanity Context MCP and the Content Lake underneath](https://raw.githubusercontent.com/Sarcastic-Soul/chain-of-custody/main/docs/submission/architecture.png)
+
 **Content model.** Six document types, all editable in the Studio embedded at `/studio`:
 
 - `sourceDocument`: title, plain-text `body`, url, document type, `publishedAt`, `verified`, and a `supersedes` reference to the older document it corrects
@@ -76,6 +88,8 @@ Sanity holds both the evidence and the agent's own track record.
 1. **Retrieval.** `gemma4:31b` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It always makes a second query that matches only on who or what the question is about, not the claim itself, so sources that dispute the first hits turn up even when they use different words.
 2. **Quote picking.** The model you chose (by default `gpt-oss:120b`) gets the raw query results and makes one forced `proposeCandidates` call, proposing quotes with a stance (`supports` or `contradicts`).
 3. **Cross-examination.** If every verified quote points the same way, the same model gets one more forced call to try to disprove that answer from the same query results. Only quotes on the other side are kept.
+
+![One question, end to end: a planted Board statement passes every string check, and cross-examination finds the 10-K that undercuts it](https://raw.githubusercontent.com/Sarcastic-Soul/chain-of-custody/main/docs/submission/walkthrough.png)
 
 Splitting it this way keeps each step small: the quote-picking call only sees the query results, not the tool definitions and query history. Everything runs on Ollama Cloud's free tier, so if one model is overloaded the agent falls back to the other instead of failing. The trace panel shows which model did each step.
 
@@ -99,14 +113,18 @@ Each run is written back to Sanity as a `redTeamRun` (per-case results) and a `t
 
 - **Fake "official" documents.** Two fakes slipped through at first. The agent now always runs a second query on who or what the question is about rather than the question's own wording (which tends to match only the planted document), and it proposes supporting and contradicting quotes in separate lists, which stopped it from quoting one side and moving on.
 - **Indirect contradictions.** The hardest fake is a board statement admitting the short-seller's claims. Nothing in the dataset disputes it head-on; the evidence against it is indirect (the Special Committee found no evidence of misconduct, and the 10-K made no restatement). So I added a **cross-examination step**: whenever every verified quote points the same way, the agent makes one more call whose only job is to disprove the answer from the documents it already retrieved, including conflicts it has to infer. Counter-quotes go through the same exact-match check, so this step can add evidence but can't make any up. The trace panel shows when it ran and what it found.
+
+  ![Cross-examination in the trace panel: every quote agreed, so the agent tried to disprove the answer and found one counter-quote](https://raw.githubusercontent.com/Sarcastic-Soul/chain-of-custody/main/docs/submission/cross-examination.png)
 - **Padding.** Cross-examination made one thing worse at first: the agent started filling answers with quotes about unrelated events. A relevance rule fixed that: a quote only counts if it's about the same event, action, or finding as the question.
 - **Run-to-run randomness.** Early runs swung between 9/12 and 12/12 on the same code. Setting temperature to 0 on every model call narrowed that. Ollama Cloud still isn't fully deterministic, so I report every run, not the best one.
 
-What's still failing: one prompt-injection case (PI-01) misses in every run, and the fake board statement (FA-03) still slips through now and then. PI-01 is worth being precise about. The injection itself never works: the planted document is thrown out by the injection filter every time. The test expects a flat refusal, but the agent answers from real documents on nearby topics (the EY resignation letter, the Special Committee update) instead. That's a relevance problem, not a security one. I tried one fix: having the model mark each quote as background-only and refusing when nothing else is left. Over three more runs it scored 11, 12 and 10, within the normal noise, and it made the agent depend on a label the model often got wrong, so I left it out.
+What's still failing: one prompt-injection case (PI-01) misses in every run, and the fake board statement (FA-03) is caught in some runs and missed in others: cross-examination doesn't always find the indirect evidence against it. PI-01 is worth being precise about. The injection itself never works: the planted document is thrown out by the injection filter every time. The test expects a flat refusal, but the agent answers from real documents on nearby topics (the EY resignation letter, the Special Committee update) instead. That's a relevance problem, not a security one. I tried one fix: having the model mark each quote as background-only and refusing when nothing else is left. Over three more runs it scored 11, 12 and 10, within the normal noise, and it made the agent depend on a label the model often got wrong, so I left it out.
 
 Every run is stored in Sanity, so the dashboard shows the full history, not just the best result.
 
 **The Trust Dashboard** (`/dashboard`) reads the agent's own history from Sanity, live:
+
+![Trust Dashboard: grounding rate, contradiction-surface rate, red-team pass rate, and every recent red-team run](https://raw.githubusercontent.com/Sarcastic-Soul/chain-of-custody/main/docs/submission/dashboard.png)
 
 - **Grounding rate**: share of claims that weren't refused
 - **Contradiction-surface rate**: share of claims where the agent found and showed a real conflict

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a; --card: #151515; --line: #2e2e2e; --text: #fafafa; --muted: #a1a1a1;
+    --model: #a78bfa; --code: #34d399; --sanity: #f36458; --amber: #fbbf24; --red: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1600px; height: 770px; background: var(--bg); color: var(--text); font-family: Geist, sans-serif; position: relative; overflow: hidden; }
+  h1 { position: absolute; left: 60px; top: 44px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { position: absolute; left: 60px; top: 92px; font-size: 17px; color: var(--muted); }
+  .legend { position: absolute; right: 60px; top: 54px; display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 7px; vertical-align: -1px; }
+  .card { position: absolute; top: 190px; width: 213px; height: 200px; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .card.m { border-color: rgba(167,139,250,.6); }
+  .card.c { border-color: rgba(52,211,153,.55); }
+  .step { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .m .step { color: var(--model); } .c .step { color: var(--code); }
+  .who { font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--muted); }
+  p { font-size: 14.5px; line-height: 1.45; color: #d4d4d4; }
+  .ask { font-size: 16px; line-height: 1.4; background: #fafafa; color: #111; border-radius: 12px; padding: 12px 14px; font-weight: 500; }
+  .pill { font-size: 13.5px; font-weight: 600; padding: 6px 10px; border-radius: 10px; }
+  .g { background: rgba(52,211,153,.14); color: var(--code); }
+  .w { background: rgba(251,191,36,.14); color: var(--amber); }
+  .r { background: rgba(248,113,113,.14); color: var(--red); }
+  .zone { position: absolute; left: 40px; top: 490px; width: 1520px; height: 240px; border: 1.5px dashed rgba(243,100,88,.55); border-radius: 20px; }
+  .zone > span { position: absolute; top: -12px; left: 20px; padding: 0 8px; background: var(--bg); font-size: 15px; font-weight: 600; color: #fda4a0; }
+  .node { position: absolute; top: 530px; height: 160px; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; }
+  .node h3 { font-size: 19px; font-weight: 600; }
+  .node p { margin-top: 8px; }
+  .chips { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { font-family: 'Geist Mono', monospace; font-size: 13px; color: #e5e5e5; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 8px; padding: 5px 9px; }
+  .lbl { position: absolute; font-family: 'Geist Mono', monospace; font-size: 13px; color: #d4d4d4; background: var(--bg); padding: 2px 7px; white-space: nowrap; }
+  svg { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<h1>How Chain of Custody works</h1>
+<div class="sub">Models suggest quotes. Plain code decides what counts. Sanity holds the evidence.</div>
+<div class="legend"><span><i style="background:var(--model)"></i>AI model</span><span><i style="background:var(--code)"></i>plain code</span><span><i style="background:var(--sanity)"></i>Sanity</span></div>
+
+<svg width="1600" height="770">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9a9a9a"/></marker>
+  </defs>
+  <g fill="none" stroke="#6b6b6b" stroke-width="2">
+    <path d="M275 290 H310" marker-end="url(#a)"/>
+    <path d="M528 290 H563" marker-end="url(#a)"/>
+    <path d="M781 290 H816" marker-end="url(#a)"/>
+    <path d="M1034 290 H1069" marker-end="url(#a)"/>
+    <path d="M1287 290 H1322" marker-end="url(#a)"/>
+    <!-- retrieve <-> context mcp -->
+    <path d="M420 394 V526" marker-start="url(#a)" marker-end="url(#a)"/>
+    <!-- context mcp -> content lake -->
+    <path d="M530 610 H563" marker-end="url(#a)"/>
+    <!-- verify re-fetches from the lake -->
+    <path d="M880 526 V394" marker-end="url(#a)"/>
+    <!-- answer is saved back -->
+    <path d="M1430 394 V450 H990 V526" marker-end="url(#a)"/>
+    <!-- lake -> dashboard -->
+    <path d="M1036 610 H1069" marker-end="url(#a)"/>
+  </g>
+</svg>
+
+<div class="card" style="left:60px">
+  <div class="step">Question</div>
+  <div class="ask">"Did the Board admit the short-seller report was accurate?"</div>
+</div>
+<div class="card m" style="left:313px">
+  <div class="step">1 · Retrieve</div>
+  <div class="who">gemma4:31b</div>
+  <p>Writes two GROQ queries: one on the claim, one on the subject only.</p>
+</div>
+<div class="card m" style="left:566px">
+  <div class="step">2 · Propose</div>
+  <div class="who">gpt-oss:120b</div>
+  <p>Picks quotes that support or contradict the claim.</p>
+</div>
+<div class="card c" style="left:819px">
+  <div class="step">3 · Verify</div>
+  <div class="who">code, no AI</div>
+  <p>Keeps a quote only if it matches the stored document word for word.</p>
+</div>
+<div class="card m" style="left:1072px">
+  <div class="step">4 · Cross-examine</div>
+  <div class="who">gpt-oss:120b</div>
+  <p>Only one side found? Looks for quotes that disprove it, then verifies them the same way.</p>
+</div>
+<div class="card c" style="left:1325px">
+  <div class="step">Answer</div>
+  <span class="pill g">✓ Grounded</span>
+  <span class="pill w">⚠ Contradicted</span>
+  <span class="pill r">✕ Refused, no proof</span>
+</div>
+
+<div class="zone"><span>Sanity</span></div>
+<div class="node" style="left:313px; width:217px">
+  <h3>Context MCP</h3>
+  <p>Runs the GROQ queries. Text comes back word for word.</p>
+</div>
+<div class="node" style="left:566px; width:470px">
+  <h3>Content Lake</h3>
+  <div class="chips"><span>sourceDocument</span><span>claim</span><span>quoteEvidence</span><span>redTeamRun</span></div>
+  <p>Real filings, plus planted fake documents to test the agent.</p>
+</div>
+<div class="node" style="left:1072px; width:466px">
+  <h3>Red-team runs</h3>
+  <p>12 attacks run through the same agent. Scores are stored here and shown on the live Trust dashboard.</p>
+</div>
+
+<div class="lbl" style="left:430px; top:450px">GROQ</div>
+<div class="lbl" style="left:890px; top:410px">re-fetch source</div>
+<div class="lbl" style="left:1120px; top:440px">save claim + quotes</div>
+</body>
+</html>
