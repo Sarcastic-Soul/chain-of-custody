@@ -47,9 +47,11 @@ The homepage has four example questions from the seeded case, or you can ask you
 
 - "Did Hindenburg accuse Super Micro of accounting manipulation?"
 - "Did Ernst & Young resign as Super Micro's auditor?"
-- "Did the Special Committee find evidence of fraud at Super Micro?" (this is where the contradiction handling shows up, against the earlier Hindenburg claims)
+- "Did the Special Committee find evidence of fraud at Super Micro?" (this is where the contradiction handling shows up)
 - "Is Super Micro currently delisted from Nasdaq?"
 - Ask something the seeded documents never covered and watch it refuse instead of inventing an answer.
+
+One thing to know: the red-team documents (fake statements, planted instructions, near-miss copies) live in the same dataset as the real ones, on purpose. The agent faces them on every question, not just in tests, so a live answer may show a fake "official" statement side by side with the real filing that contradicts it. That's the agent doing its job.
 
 No login needed. By default `gemma4:31b` writes the queries and `gpt-oss:120b` picks the quotes, both on Ollama Cloud. The composer lets you switch the quote-picking model to `gemma4:31b`, so you can compare accuracy and latency yourself instead of trusting one fixed model. The public demo answers up to 100 questions a day.
 
@@ -71,7 +73,7 @@ Sanity holds both the evidence and the agent's own track record.
 
 **What the agent does with the results.** Each question runs in up to three steps:
 
-1. **Retrieval.** `gemma4:31b` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It can make a second query to look for sources that dispute the first ones.
+1. **Retrieval.** `gemma4:31b` writes narrow GROQ queries through the MCP `groq_query` tool: keyword `match` on title and body, a capped result count, and a sub-query that pulls in any newer document that supersedes each hit. It always makes a second query that matches only on who or what the question is about, not the claim itself, so sources that dispute the first hits turn up even when they use different words.
 2. **Quote picking.** The model you chose (by default `gpt-oss:120b`) gets the raw query results and makes one forced `proposeCandidates` call, proposing quotes with a stance (`supports` or `contradicts`).
 3. **Cross-examination.** If every verified quote points the same way, the same model gets one more forced call to try to disprove that answer from the same query results. Only quotes on the other side are kept.
 
@@ -100,7 +102,7 @@ Each run is written back to Sanity as a `redTeamRun` (per-case results) and a `t
 - **Padding.** Cross-examination made one thing worse at first: the agent started filling answers with quotes about unrelated events. A relevance rule fixed that: a quote only counts if it's about the same event, action, or finding as the question.
 - **Run-to-run randomness.** Early runs swung between 9/12 and 12/12 on the same code. Setting temperature to 0 on every model call narrowed that. Ollama Cloud still isn't fully deterministic, so I report every run, not the best one.
 
-What's still failing: one prompt-injection case (PI-01) misses in every run, and the fake board statement (FA-03) still slips through now and then. PI-01 is worth being precise about. The injection itself never works: the planted document is thrown out by the injection filter every time. The test expects a flat refusal, but the agent answers from real documents on nearby topics (the EY resignation letter, the Special Committee update) instead. That's a relevance problem, not a security one, and it's the next thing I'd fix.
+What's still failing: one prompt-injection case (PI-01) misses in every run, and the fake board statement (FA-03) still slips through now and then. PI-01 is worth being precise about. The injection itself never works: the planted document is thrown out by the injection filter every time. The test expects a flat refusal, but the agent answers from real documents on nearby topics (the EY resignation letter, the Special Committee update) instead. That's a relevance problem, not a security one. I tried one fix: having the model mark each quote as background-only and refusing when nothing else is left. Over three more runs it scored 11, 12 and 10, within the normal noise, and it made the agent depend on a label the model often got wrong, so I left it out.
 
 Every run is stored in Sanity, so the dashboard shows the full history, not just the best result.
 
